@@ -1,24 +1,28 @@
 ---
 const benefits = [
   {
-    icon: '⚡',
-    title: 'Blazing fast',
-    description: 'Lightweight architecture ensures your product is always snappy and responsive.',
+    image: '/hi.png',
+    imageAlt: 'hey',
+    title: 'V súlade s reguláciou',
+    description: 'Pomáha škole systematicky naplniť nové pravidlá regulácie mobilov bez komplikácií.',
   },
   {
-    icon: '🎯',
-    title: 'Focused',
-    description: 'No bloat. Every feature is intentional and directly tied to your goals.',
+    image: '/yes.png',
+    imageAlt: 'áno',
+    title: 'Bezpečný mechanizmus',
+    description: 'Navrhnutý s dôrazom na bezpečnosť – minimalizuje riziko zranenia pri manipulácii.',
   },
   {
-    icon: '🔒',
-    title: 'Reliable',
-    description: 'Built with resilience in mind — predictable, stable, and easy to maintain.',
+    image: '/oooh.png',
+    imageAlt: 'oooh',
+    title: 'Každodenné používanie',
+    description: 'Nezablokuje signál. Ideálne pre bežný školský deň (5.–9. ročník).',
   },
   {
-    icon: '🌱',
-    title: 'Scalable',
-    description: 'Start small and grow confidently. Pauci grows with your ambitions.',
+    image: '/aahhh.png',
+    imageAlt: 'aahhh',
+    title: 'Ďalší benefit',
+    description: 'Toto je zástupný text – doplňte sem popis štvrtého benefitu, keď bude pripravený.',
   },
 ];
 ---
@@ -26,16 +30,16 @@ const benefits = [
 <section id="benefits" class="py-20">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-14">
-      <h2 class="text-3xl sm:text-4xl font-bold text-ink">Why Pauci?</h2>
+      <h2 class="text-3xl sm:text-4xl font-bold text-ink">Prečo Pauči?</h2>
       <p class="mt-4 text-lg text-ink/70 max-w-xl mx-auto">
-        Everything you need, nothing you don't.
+        Všetko, čo potrebujete, nič navyše.
       </p>
     </div>
 
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-      {benefits.map(({ icon, title, description }) => (
+      {benefits.map(({ image, imageAlt, title, description }) => (
         <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-          <div class="text-4xl mb-4">{icon}</div>
+          <img src={image} alt={imageAlt} class="h-14 w-auto object-contain mb-4" />
           <h3 class="text-lg font-semibold text-ink mb-2">{title}</h3>
           <p class="text-ink/70 text-sm leading-relaxed">{description}</p>
         </div>
