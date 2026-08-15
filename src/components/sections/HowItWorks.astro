@@ -1,0 +1,45 @@
+---
+const steps = [
+  {
+    number: '01',
+    title: 'Sign up',
+    description: 'Create your account in seconds. No credit card required.',
+  },
+  {
+    number: '02',
+    title: 'Configure',
+    description: 'Connect your tools and tailor Pauci to your workflow.',
+  },
+  {
+    number: '03',
+    title: 'Launch',
+    description: 'Go live confidently with full visibility from day one.',
+  },
+];
+---
+
+<section id="how-it-works" class="py-20 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">How it works</h2>
+      <p class="mt-4 text-lg text-gray-500 max-w-xl mx-auto">
+        Three simple steps to get up and running.
+      </p>
+    </div>
+
+    <div class="relative grid gap-8 md:grid-cols-3">
+      {/* Connector line (desktop only) */}
+      <div class="hidden md:block absolute top-10 left-[16.666%] right-[16.666%] h-px bg-brand-200" aria-hidden="true" />
+
+      {steps.map(({ number, title, description }) => (
+        <div class="relative flex flex-col items-center text-center">
+          <div class="flex items-center justify-center w-20 h-20 rounded-full bg-brand-600 text-white text-2xl font-extrabold mb-6 shadow-lg">
+            {number}
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">{title}</h3>
+          <p class="text-gray-500 text-sm leading-relaxed max-w-xs">{description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

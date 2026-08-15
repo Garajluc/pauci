@@ -1,0 +1,45 @@
+---
+const benefits = [
+  {
+    icon: '⚡',
+    title: 'Blazing fast',
+    description: 'Lightweight architecture ensures your product is always snappy and responsive.',
+  },
+  {
+    icon: '🎯',
+    title: 'Focused',
+    description: 'No bloat. Every feature is intentional and directly tied to your goals.',
+  },
+  {
+    icon: '🔒',
+    title: 'Reliable',
+    description: 'Built with resilience in mind — predictable, stable, and easy to maintain.',
+  },
+  {
+    icon: '🌱',
+    title: 'Scalable',
+    description: 'Start small and grow confidently. Pauci grows with your ambitions.',
+  },
+];
+---
+
+<section id="benefits" class="py-20 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">Why Pauci?</h2>
+      <p class="mt-4 text-lg text-gray-500 max-w-xl mx-auto">
+        Everything you need, nothing you don't.
+      </p>
+    </div>
+
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {benefits.map(({ icon, title, description }) => (
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+          <div class="text-4xl mb-4">{icon}</div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">{title}</h3>
+          <p class="text-gray-500 text-sm leading-relaxed">{description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
