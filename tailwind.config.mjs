@@ -4,6 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
+        cream: '#FEEDDB',
+        ink: '#2642CA',
+        coral: {
+          DEFAULT: '#FC7761',
+          700: '#ea5b44',
+        },
         brand: {
           50: '#f0f9ff',
           100: '#e0f2fe',
