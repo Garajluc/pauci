@@ -1,6 +1,9 @@
 ---
 import { Image } from 'astro:assets';
 import heroScribbles from '../../assets/hero-scribbles.svg';
+
+// TODO: replace with the real contact address
+const contactEmail = 'info@pauci.sk';
 ---
 
 <section id="contact" class="relative py-20 scroll-mt-16">
@@ -19,9 +22,9 @@ import heroScribbles from '../../assets/hero-scribbles.svg';
     </div>
 
     <form
+      id="contact-form"
       class="space-y-6 bg-white rounded-2xl p-8 border border-gray-100 shadow-sm"
-      action="#contact"
-      method="POST"
+      data-contact-email={contactEmail}
     >
       <div class="grid gap-6 sm:grid-cols-2">
         <div>
@@ -89,6 +92,31 @@ import heroScribbles from '../../assets/hero-scribbles.svg';
       >
         Odoslať správu
       </button>
+
+      <p class="text-center text-sm text-ink/60">
+        Odoslaním sa otvorí váš e-mailový klient so správou pripravenou na
+        adresu <a href={`mailto:${contactEmail}`} class="underline hover:text-coral">{contactEmail}</a>.
+      </p>
     </form>
   </div>
 </section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const data = new FormData(form);
+    const firstName = String(data.get('first-name') ?? '');
+    const lastName = String(data.get('last-name') ?? '');
+    const email = String(data.get('email') ?? '');
+    const message = String(data.get('message') ?? '');
+
+    const subject = `Správa z webu od ${firstName} ${lastName}`.trim();
+    const body = `${message}\n\n—\n${firstName} ${lastName}\n${email}`;
+
+    const to = form.dataset.contactEmail ?? '';
+    window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+</script>
