@@ -1,9 +1,12 @@
 ---
+import { Image } from 'astro:assets';
+import paperPlane from '../../assets/paper-plane-quote.png';
 ---
 
-<section id="quote" class="py-10">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="relative overflow-hidden rounded-2xl bg-[#5C5FA8] px-8 py-12 sm:px-12 sm:py-16">
+<section id="quote" class="relative">
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Violet quote card temporarily hidden (remove `hidden` to bring it back) — the plane below stays visible */}
+    <div class="hidden relative overflow-hidden rounded-2xl bg-[#5C5FA8] px-8 py-12 sm:px-12 sm:py-16">
       <!-- Pink brush scribbles (decorative) -->
       <img
         src="/scribble.svg"
@@ -36,5 +39,13 @@
         </span>
       </p>
     </div>
+
+    <!-- Paper plane flying off below the quote, overlapping the next section -->
+    <Image
+      src={paperPlane}
+      alt=""
+      aria-hidden="true"
+      class="absolute z-[60] right-4 sm:right-6 lg:right-8 top-full -mt-[3.25rem] w-48 sm:w-64 lg:w-80 h-auto pointer-events-none select-none"
+    />
   </div>
 </section>
