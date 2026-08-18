@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <!-- tilted pouch tapping down -->
+  <path d="M19.8 5.8 C 17.2 10.4, 15.4 16.2, 15.2 21.8 C 17.6 24.9, 26.6 25.2, 29.6 22.4 C 30.4 16.4, 29.4 10.2, 27.6 5.4" />
+  <path d="M19.8 5.8 C 22.4 4.3, 25.2 4.2, 27.6 5.4" />
+  <!-- unlock box -->
+  <path d="M9.8 33.2 C 18.6 31.4, 29.6 31.4, 38.4 33.4 C 39.5 36.4, 39.5 38.9, 38.7 41.7 C 29.4 43.8, 18.4 43.7, 9.3 41.5 C 8.5 38.7, 8.7 35.9, 9.8 33.2 Z" />
+  <!-- tap arcs -->
+  <path d="M17.6 28.4 C 20.4 27, 27.6 26.9, 30.6 28.2" stroke-width="2.4" />
+  <path d="M19.8 30.8 C 22 30, 26 30, 28.2 30.7" stroke-width="2.4" />
+  <!-- sparks off the box -->
+  <path d="M5.6 30.2 C 4.6 29.2, 3.8 28.4, 3 27.5" stroke-width="2.4" />
+  <path d="M42.4 30.6 C 43.4 29.6, 44.2 28.7, 45 27.8" stroke-width="2.4" />
+  <!-- little heart, because freedom -->
+  <path d="M37.4 14.6 C 34.4 12.2, 33.1 9.8, 34.7 8.2 C 35.9 7, 37.4 7.6, 37.9 9 C 38.5 7.6, 40.1 7.2, 41.2 8.5 C 42.6 10.1, 40.6 12.6, 37.4 14.6 Z" stroke-width="2.4" />
+</svg>

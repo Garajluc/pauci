@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import paperPlane from '../../assets/paper-plane-quote.png';
+---
+
+<section id="quote" class="relative">
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Violet quote card temporarily hidden (remove `hidden` to bring it back) — the plane below stays visible */}
+    <div class="hidden relative overflow-hidden rounded-2xl bg-[#5C5FA8] px-8 py-12 sm:px-12 sm:py-16">
+      <!-- Pink brush scribbles (decorative) -->
+      <img
+        src="/scribble.svg"
+        alt=""
+        class="pointer-events-none absolute right-0 top-0 h-full w-auto max-w-[45%] object-contain object-right"
+        aria-hidden="true"
+      />
+
+      <p class="relative max-w-2xl text-lg leading-relaxed text-white">
+        Údaje z globálnych vzdelávacích prieskumov, vládnych politík a výskumu
+        verejnej mienky potvrdzujú trend v obmedzovania telefónov, ktoré
+        získavajú na popularite, keďže pedagógovia hľadajú spôsoby, ako zlepšiť
+        sústredenosť
+        <span class="relative inline-block whitespace-nowrap">
+          študentov.
+          <!-- hand-drawn orange circle around the word -->
+          <svg
+            class="pointer-events-none absolute -left-[10%] -top-[35%] h-[170%] w-[120%]"
+            viewBox="0 0 220 90"
+            fill="none"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <g stroke="#E9A03B" stroke-width="4" stroke-linecap="round">
+              <path d="M35 18 C 90 2, 195 8, 208 40 C 218 68, 140 86, 75 82 C 25 78, 4 60, 14 38 C 22 20, 70 8, 130 8" />
+              <path d="M45 24 C 100 10, 185 14, 200 42 C 210 66, 145 80, 85 77 C 40 74, 18 58, 26 40" />
+            </g>
+          </svg>
+        </span>
+      </p>
+    </div>
+
+    <!-- Paper plane flying off below the quote, overlapping the next section -->
+    <Image
+      src={paperPlane}
+      alt=""
+      aria-hidden="true"
+      class="absolute z-[60] right-4 sm:right-6 lg:right-8 top-full -mt-[3.25rem] w-48 sm:w-64 lg:w-80 h-auto pointer-events-none select-none"
+    />
+  </div>
+</section>

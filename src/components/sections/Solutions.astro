@@ -1,0 +1,90 @@
+---
+const solutions = [
+  {
+    title: 'Jeden systém pre všetkých',
+    description: 'Jednoduchý, jednotný systém pre celú školu.',
+    icon: 'school',
+  },
+  {
+    title: 'Bez výnimiek a dohadovania',
+    description: 'Jasné pravidlá bez zbytočných diskusií.',
+    icon: 'rules',
+  },
+  {
+    title: 'Dôvera namiesto zákazov',
+    description: 'Mobil ostáva pri žiakovi, ale pod kontrolou.',
+    icon: 'phone-lock',
+  },
+  {
+    title: 'Pomôžeme vám začať',
+    description: 'Podpora pri zavedení systému.',
+    icon: 'support',
+  },
+];
+---
+
+<section id="solutions" class="mt-[5.75rem] pt-2 sm:pt-[4.5rem] lg:pt-[8.5rem] pb-28 scroll-mt-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid gap-12 md:grid-cols-[2fr_3fr] md:gap-0">
+      <!-- Left: heading + intro -->
+      <div class="flex flex-col items-center text-center md:items-end md:text-right md:pr-14 lg:pr-20">
+        <h2 class="text-4xl sm:text-5xl font-bold text-ink leading-tight">
+          Naše riešenia
+        </h2>
+        <span class="mt-8 h-0.5 w-10 bg-ink/60" aria-hidden="true"></span>
+        <p class="mt-8 text-lg leading-relaxed text-ink/70 max-w-xs">
+          Navrhnuté tak, aby odstránili prekážky na každej úrovni.
+        </p>
+      </div>
+
+      <!-- Right: icon list, divided from the left column -->
+      <div class="md:border-l md:border-ink/15 md:pl-14 lg:pl-20">
+        <ul class="flex flex-col gap-12">
+          {solutions.map(({ title, description, icon }) => (
+            <li class="flex items-start gap-6">
+              <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-ink text-white">
+                {icon === 'school' && (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 21V10l8-5 8 5v11" />
+                    <path d="M3 21h18" />
+                    <path d="M10 21v-4a2 2 0 0 1 4 0v4" />
+                    <path d="M12 5V2.5h3.5" />
+                  </svg>
+                )}
+                {icon === 'rules' && (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="5" y="4" width="14" height="17" rx="2" />
+                    <path d="M9 4V2.5h6V4" />
+                    <path d="M9 13.5l2.2 2.2 4-4.5" />
+                  </svg>
+                )}
+                {icon === 'phone-lock' && (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="7" y="2.5" width="10" height="19" rx="2" />
+                    <path d="M10.5 11.5v-1.25a1.5 1.5 0 0 1 3 0v1.25" />
+                    <rect x="9.75" y="11.5" width="4.5" height="3.75" rx="0.8" />
+                    <path d="M11 18.5h2" />
+                  </svg>
+                )}
+                {icon === 'support' && (
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 13a8 8 0 0 1 16 0" />
+                    <rect x="3" y="13" width="4" height="6" rx="1.5" />
+                    <rect x="17" y="13" width="4" height="6" rx="1.5" />
+                    <path d="M19 19v1.5a1.5 1.5 0 0 1-1.5 1.5H13" />
+                  </svg>
+                )}
+              </span>
+              <div>
+                <h3 class="text-xl sm:text-2xl font-bold text-ink">{title}</h3>
+                <p class="mt-3 max-w-sm text-sm leading-relaxed text-ink/70">
+                  {description}
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
