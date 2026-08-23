@@ -1,9 +1,51 @@
 ---
 import { Image } from 'astro:assets';
 import heroScribbles from '../../assets/hero-scribbles.svg';
+import { getLang } from '../../i18n';
 
 // TODO: replace with the real contact address
 const contactEmail = 'info@pauci.sk';
+
+const lang = getLang(Astro.currentLocale);
+
+const content = {
+  sk: {
+    heading: 'Chcete Pauči vyskúšať vo vašej škole?',
+    intro:
+      'Radi vám ukážeme prototyp a porozprávame sa o tom, ako by mohol fungovať práve u vás.',
+    nameLabel: 'Meno a priezvisko',
+    namePlaceholder: 'Jana Nováková',
+    schoolLabel: 'Škola',
+    schoolPlaceholder: 'ZŠ Príkladová, Bratislava',
+    emailLabel: 'E-mail',
+    emailPlaceholder: 'jana@priklad.sk',
+    messageLabel: 'Správa',
+    messagePlaceholder:
+      'Napíšte nám pár slov o vašej škole alebo o tom, ako aktuálne riešite mobily počas vyučovania.',
+    submit: 'Odoslať',
+    note: 'Odoslaním sa otvorí váš e-mailový klient so správou pripravenou na adresu',
+    subjectPrefix: 'Záujem o pilot Pauči',
+  },
+  en: {
+    heading: 'Want to try Pauči at your school?',
+    intro:
+      "We'd be happy to show you the prototype and talk about how it could work at your school.",
+    nameLabel: 'Full name',
+    namePlaceholder: 'Jane Smith',
+    schoolLabel: 'School',
+    schoolPlaceholder: 'Example Primary School, Bratislava',
+    emailLabel: 'Email',
+    emailPlaceholder: 'jane@example.com',
+    messageLabel: 'Message',
+    messagePlaceholder:
+      'Tell us a bit about your school or how you currently handle phones during lessons.',
+    submit: 'Send',
+    note: 'Submitting opens your email client with a message prepared for',
+    subjectPrefix: 'Pauči pilot interest',
+  },
+} as const;
+
+const t = content[lang];
 ---
 
 <section id="contact" class="relative py-20 scroll-mt-16">
@@ -16,11 +58,10 @@ const contactEmail = 'info@pauci.sk';
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
       <h2 class="text-4xl sm:text-5xl font-bold text-ink leading-tight">
-        Chcete Pauči vyskúšať vo vašej škole?
+        {t.heading}
       </h2>
       <p class="mt-6 text-lg text-ink/70 leading-relaxed">
-        Radi vám ukážeme prototyp a porozprávame sa o tom, ako by mohol
-        fungovať práve u vás.
+        {t.intro}
       </p>
     </div>
 
@@ -28,13 +69,14 @@ const contactEmail = 'info@pauci.sk';
       id="contact-form"
       class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm"
       data-contact-email={contactEmail}
+      data-subject-prefix={t.subjectPrefix}
     >
       <div class="grid gap-6 md:grid-cols-2">
         <!-- Left column: contact fields -->
         <div class="space-y-5">
           <div>
             <label for="name" class="block text-sm font-medium text-ink mb-1">
-              Meno a priezvisko
+              {t.nameLabel}
             </label>
             <input
               id="name"
@@ -43,13 +85,13 @@ const contactEmail = 'info@pauci.sk';
               autocomplete="name"
               required
               class="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-coral focus:border-transparent transition"
-              placeholder="Jana Nováková"
+              placeholder={t.namePlaceholder}
             />
           </div>
 
           <div>
             <label for="school" class="block text-sm font-medium text-ink mb-1">
-              Škola
+              {t.schoolLabel}
             </label>
             <input
               id="school"
@@ -58,13 +100,13 @@ const contactEmail = 'info@pauci.sk';
               autocomplete="organization"
               required
               class="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-coral focus:border-transparent transition"
-              placeholder="ZŠ Príkladová, Bratislava"
+              placeholder={t.schoolPlaceholder}
             />
           </div>
 
           <div>
             <label for="email" class="block text-sm font-medium text-ink mb-1">
-              E-mail
+              {t.emailLabel}
             </label>
             <input
               id="email"
@@ -73,7 +115,7 @@ const contactEmail = 'info@pauci.sk';
               autocomplete="email"
               required
               class="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-coral focus:border-transparent transition"
-              placeholder="jana@priklad.sk"
+              placeholder={t.emailPlaceholder}
             />
           </div>
         </div>
@@ -81,7 +123,7 @@ const contactEmail = 'info@pauci.sk';
         <!-- Right column: message, stretching to match the left column -->
         <div class="flex flex-col">
           <label for="message" class="block text-sm font-medium text-ink mb-1">
-            Správa
+            {t.messageLabel}
           </label>
           <textarea
             id="message"
@@ -89,7 +131,7 @@ const contactEmail = 'info@pauci.sk';
             rows="5"
             required
             class="w-full flex-1 rounded-lg border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-coral focus:border-transparent transition resize-none"
-            placeholder="Napíšte nám pár slov o vašej škole alebo o tom, ako aktuálne riešite mobily počas vyučovania."
+            placeholder={t.messagePlaceholder}
           ></textarea>
         </div>
       </div>
@@ -99,14 +141,14 @@ const contactEmail = 'info@pauci.sk';
           type="submit"
           class="w-full sm:w-auto inline-flex items-center justify-center px-12 py-3 rounded-full bg-coral text-white font-semibold hover:bg-coral-700 transition-colors focus:outline-none focus:ring-2 focus:ring-coral focus:ring-offset-2"
         >
-          Odoslať
+          {t.submit}
         </button>
       </div>
     </form>
 
     <p class="mt-4 text-center text-sm text-ink/60">
-      Odoslaním sa otvorí váš e-mailový klient so správou pripravenou na
-      adresu <a href={`mailto:${contactEmail}`} class="underline hover:text-coral">{contactEmail}</a>.
+      {t.note}{' '}
+      <a href={`mailto:${contactEmail}`} class="underline hover:text-coral">{contactEmail}</a>.
     </p>
   </div>
 </section>
@@ -123,7 +165,8 @@ const contactEmail = 'info@pauci.sk';
     const email = String(data.get('email') ?? '');
     const message = String(data.get('message') ?? '');
 
-    const subject = `Záujem o pilot Pauči – ${school}`.trim();
+    const subjectPrefix = form.dataset.subjectPrefix ?? 'Pauči';
+    const subject = `${subjectPrefix} – ${school}`.trim();
     const body = `${message}\n\n—\n${name}\n${school}\n${email}`;
 
     const to = form.dataset.contactEmail ?? '';

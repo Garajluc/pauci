@@ -1,6 +1,24 @@
 ---
 import { Image } from 'astro:assets';
 import paperPlane from '../../assets/paper-plane-quote.png';
+import { getLang } from '../../i18n';
+
+const lang = getLang(Astro.currentLocale);
+
+const content = {
+  sk: {
+    before:
+      'Údaje z globálnych vzdelávacích prieskumov, vládnych politík a výskumu verejnej mienky potvrdzujú trend v obmedzovania telefónov, ktoré získavajú na popularite, keďže pedagógovia hľadajú spôsoby, ako zlepšiť sústredenosť',
+    circled: 'študentov.',
+  },
+  en: {
+    before:
+      'Data from global education surveys, government policies and public-opinion research confirm the growing trend of phone restrictions, as educators look for ways to improve the focus of their',
+    circled: 'students.',
+  },
+} as const;
+
+const t = content[lang];
 ---
 
 <section id="quote" class="relative">
@@ -16,12 +34,9 @@ import paperPlane from '../../assets/paper-plane-quote.png';
       />
 
       <p class="relative max-w-2xl text-lg leading-relaxed text-white">
-        Údaje z globálnych vzdelávacích prieskumov, vládnych politík a výskumu
-        verejnej mienky potvrdzujú trend v obmedzovania telefónov, ktoré
-        získavajú na popularite, keďže pedagógovia hľadajú spôsoby, ako zlepšiť
-        sústredenosť
+        {t.before}
         <span class="relative inline-block whitespace-nowrap">
-          študentov.
+          {t.circled}
           <!-- hand-drawn orange circle around the word -->
           <svg
             class="pointer-events-none absolute -left-[10%] -top-[35%] h-[170%] w-[120%]"

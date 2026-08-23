@@ -1,48 +1,68 @@
 ---
-const alternatives = [
-  {
-    title: 'Telefón v taške',
-    drawback: 'stále dostupný a láka na používanie',
-  },
-  {
-    title: 'Box s telefónmi',
-    drawback: 'zbieranie a rozdávanie každý deň',
-  },
-  {
-    title: 'Skrinky',
-    drawback: 'zaberajú priestor a niečo stoja',
-  },
-];
+import { getLang } from '../../i18n';
 
-const pauciBenefits = [
-  'Mobil zostáva pri žiakovi',
-  'Fyzická bariéra proti používaniu',
-  'Žiadne zbieranie ani skladovanie',
-];
+const lang = getLang(Astro.currentLocale);
+
+const content = {
+  sk: {
+    heading: 'Kam s mobilom počas vyučovania?',
+    p1: 'Školy dnes používajú rôzne spôsoby regulácie mobilov. Telefóny môžu zostať v školskej taške, môžu sa odovzdávať učiteľovi, ukladať spoločne alebo do samostatných skriniek.',
+    p2: 'Každé z týchto riešení však prináša určitý kompromis – medzi kontrolou používania, bezpečnosťou zariadení, potrebným priestorom a dodatočnou organizáciou pre školu.',
+    alternatives: [
+      { title: 'Telefón v taške', drawback: 'stále dostupný a láka na používanie' },
+      { title: 'Box s telefónmi', drawback: 'zbieranie a rozdávanie každý deň' },
+      { title: 'Skrinky', drawback: 'zaberajú priestor a niečo stoja' },
+    ],
+    badge: 'Pauči',
+    cardTitle: 'Puzdro Pauči',
+    cardSubtitle: 'jedno riešenie bez kompromisov',
+    benefits: [
+      'Mobil zostáva pri žiakovi',
+      'Fyzická bariéra proti používaniu',
+      'Žiadne zbieranie ani skladovanie',
+    ],
+  },
+  en: {
+    heading: 'Where do phones go during lessons?',
+    p1: 'Schools today manage phones in different ways. Phones may stay in school bags, be handed to the teacher, stored together, or kept in individual lockers.',
+    p2: 'Each of these approaches comes with a trade-off — between control over phone use, device safety, required space and extra organisation for the school.',
+    alternatives: [
+      { title: 'Phone in the bag', drawback: 'still within reach and tempting to use' },
+      { title: 'Phone box', drawback: 'collecting and handing back every day' },
+      { title: 'Lockers', drawback: 'take up space and cost money' },
+    ],
+    badge: 'Pauči',
+    cardTitle: 'The Pauči pouch',
+    cardSubtitle: 'one solution, no compromises',
+    benefits: [
+      'The phone stays with the student',
+      'A physical barrier against use',
+      'No collecting or storing',
+    ],
+  },
+} as const;
+
+const t = content[lang];
 ---
 
 <section id="solutions" class="mt-[5.75rem] pt-2 sm:pt-[4.5rem] lg:pt-[8.5rem] pb-28 scroll-mt-16">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-14 max-w-3xl mx-auto">
       <h2 class="text-4xl sm:text-5xl font-bold text-ink">
-        Kam s mobilom počas vyučovania?
+        {t.heading}
       </h2>
       <p class="mt-6 text-lg leading-relaxed text-ink/70">
-        Školy dnes používajú rôzne spôsoby regulácie mobilov. Telefóny môžu
-        zostať v školskej taške, môžu sa odovzdávať učiteľovi, ukladať
-        spoločne alebo do samostatných skriniek.
+        {t.p1}
       </p>
       <p class="mt-4 text-lg leading-relaxed text-ink/70">
-        Každé z týchto riešení však prináša určitý kompromis – medzi kontrolou
-        používania, bezpečnosťou zariadení, potrebným priestorom a dodatočnou
-        organizáciou pre školu.
+        {t.p2}
       </p>
     </div>
 
     <div class="grid items-center gap-10 md:grid-cols-[1fr_auto_1.15fr] md:gap-6 lg:gap-10 max-w-5xl mx-auto">
       <!-- The three compromises -->
       <div class="flex flex-col gap-4">
-        {alternatives.map(({ title, drawback }) => (
+        {t.alternatives.map(({ title, drawback }) => (
           <div class="flex items-center gap-4 rounded-2xl border border-ink/10 bg-[#FFF8F1] px-5 py-4">
             <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-ink/15 text-ink/40">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true">
@@ -73,14 +93,14 @@ const pauciBenefits = [
       <!-- Pauči — the one solution that covers it all -->
       <div class="relative rounded-2xl border-2 border-coral bg-white px-8 py-9 shadow-lg md:rotate-1">
         <span class="absolute -top-3.5 right-6 rounded-full bg-coral px-4 py-1.5 text-sm font-bold text-white">
-          Pauči
+          {t.badge}
         </span>
-        <h3 class="text-2xl font-bold text-ink">Puzdro Pauči</h3>
+        <h3 class="text-2xl font-bold text-ink">{t.cardTitle}</h3>
         <p class="mt-1 text-sm font-semibold text-coral">
-          jedno riešenie bez kompromisov
+          {t.cardSubtitle}
         </p>
         <ul class="mt-5 space-y-3 text-left">
-          {pauciBenefits.map((benefit) => (
+          {t.benefits.map((benefit) => (
             <li class="flex items-center gap-3">
               <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-coral text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

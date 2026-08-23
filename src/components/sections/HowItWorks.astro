@@ -1,24 +1,52 @@
 ---
 import { Image } from 'astro:assets';
 import scribblePeach from '../../assets/scribble-peach.png';
+import { getLang } from '../../i18n';
 
-const steps = [
-  {
-    title: 'Vlož mobil',
-    description:
-      'Na začiatku vyučovania si žiak vloží telefón do vlastného puzdra Pauči.',
+const lang = getLang(Astro.currentLocale);
+
+const content = {
+  sk: {
+    kicker: 'Ako funguje Pauči',
+    heading: 'Tri jednoduché kroky.',
+    steps: [
+      {
+        title: 'Vlož mobil',
+        description: 'Na začiatku vyučovania si žiak vloží telefón do vlastného puzdra Pauči.',
+      },
+      {
+        title: 'Uzamkni a maj pri sebe',
+        description:
+          'Puzdro sa uzamkne samostatne bez potreby ďalšieho zariadenia. Telefón zostáva počas školského dňa pri žiakovi, ale nie je možné ho používať.',
+      },
+      {
+        title: 'Prilož a otvor',
+        description: 'Na otvorenie puzdra žiak použije centrálne umiestnené odomykacie zariadenie.',
+      },
+    ],
   },
-  {
-    title: 'Uzamkni a maj pri sebe',
-    description:
-      'Puzdro sa uzamkne samostatne bez potreby ďalšieho zariadenia. Telefón zostáva počas školského dňa pri žiakovi, ale nie je možné ho používať.',
+  en: {
+    kicker: 'How Pauči works',
+    heading: 'Three simple steps.',
+    steps: [
+      {
+        title: 'Insert the phone',
+        description: 'At the start of the school day, the student puts their phone into their own Pauči pouch.',
+      },
+      {
+        title: 'Lock it and keep it',
+        description:
+          "The pouch locks on its own — no extra device needed. The phone stays with the student throughout the school day, but can't be used.",
+      },
+      {
+        title: 'Tap to unlock',
+        description: 'To open the pouch, the student uses the centrally placed unlocking device.',
+      },
+    ],
   },
-  {
-    title: 'Prilož a otvor',
-    description:
-      'Na otvorenie puzdra žiak použije centrálne umiestnené odomykacie zariadenie.',
-  },
-];
+} as const;
+
+const t = content[lang];
 ---
 
 <section id="how-it-works" class="relative py-20 bg-[#FFD09E] scroll-mt-28">
@@ -61,15 +89,15 @@ const steps = [
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
       <p class="text-sm font-bold uppercase tracking-widest text-coral mb-3">
-        Ako funguje Pauči
+        {t.kicker}
       </p>
       <h2 class="text-4xl sm:text-5xl font-bold text-ink">
-        Tri jednoduché kroky.
+        {t.heading}
       </h2>
     </div>
 
     <div class="grid items-center gap-8 md:grid-cols-[1fr_auto_1fr_auto_1fr] md:gap-3 lg:gap-5">
-      {steps.map(({ title, description }, i) => (
+      {t.steps.map(({ title, description }, i) => (
         <>
           {i > 0 && (
             <div class="flex items-center justify-center text-white">

@@ -1,23 +1,50 @@
 ---
 import Logo from './Logo.astro';
+import { getLang, homeHref } from '../i18n';
 
-const navLinks = [
-  { label: 'Prečo Pauči', href: '#benefits' },
-  { label: 'Ako funguje', href: '#how-it-works' },
-  { label: 'O produkte', href: '#product' },
-  { label: 'FAQ', href: '#faq' },
-  { label: 'Kontakt', href: '#contact' },
-];
+const lang = getLang(Astro.currentLocale);
+
+const content = {
+  sk: {
+    navLinks: [
+      { label: 'Prečo Pauči', href: '#benefits' },
+      { label: 'Ako funguje', href: '#how-it-works' },
+      { label: 'O produkte', href: '#product' },
+      { label: 'FAQ', href: '#faq' },
+      { label: 'Kontakt', href: '#contact' },
+    ],
+    cta: 'Pilot pre školu',
+    menuLabel: 'Otvoriť menu',
+  },
+  en: {
+    navLinks: [
+      { label: 'Why Pauči', href: '#benefits' },
+      { label: 'How it works', href: '#how-it-works' },
+      { label: 'Product', href: '#product' },
+      { label: 'FAQ', href: '#faq' },
+      { label: 'Contact', href: '#contact' },
+    ],
+    cta: 'School pilot',
+    menuLabel: 'Toggle menu',
+  },
+} as const;
+
+const t = content[lang];
+
+const langLinks = [
+  { code: 'sk', label: 'SK', href: homeHref('sk') },
+  { code: 'en', label: 'EN', href: homeHref('en') },
+] as const;
 ---
 
 <header class="sticky top-0 z-50 bg-cream/90 backdrop-blur">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-    <a href={import.meta.env.BASE_URL} aria-label="Pauci home">
+    <a href={homeHref(lang)} aria-label="Pauci home">
       <Logo />
     </a>
 
     <nav class="hidden md:flex items-center gap-8">
-      {navLinks.map(({ label, href }) => (
+      {t.navLinks.map(({ label, href }) => (
         <a
           href={href}
           class="text-sm font-semibold text-ink/70 hover:text-ink transition-colors"
@@ -27,18 +54,35 @@ const navLinks = [
       ))}
     </nav>
 
-    <a
-      href="#contact"
-      class="hidden md:inline-flex items-center px-4 py-2 rounded-full bg-coral text-white text-sm font-medium hover:bg-coral-700 transition-colors"
-    >
-      Pilot pre školu
-    </a>
+    <div class="hidden md:flex items-center gap-5">
+      <div class="flex items-center gap-1.5 text-sm font-semibold" aria-label="Language">
+        {langLinks.map(({ code, label, href }, i) => (
+          <>
+            {i > 0 && <span class="text-ink/30" aria-hidden="true">/</span>}
+            <a
+              href={href}
+              aria-current={code === lang ? 'page' : undefined}
+              class={code === lang ? 'text-ink' : 'text-ink/50 hover:text-ink transition-colors'}
+            >
+              {label}
+            </a>
+          </>
+        ))}
+      </div>
+
+      <a
+        href="#contact"
+        class="inline-flex items-center px-4 py-2 rounded-full bg-coral text-white text-sm font-medium hover:bg-coral-700 transition-colors"
+      >
+        {t.cta}
+      </a>
+    </div>
 
     <!-- Mobile nav toggle (CSS-only, no JS required) -->
     <label
       for="mobile-menu-toggle"
       class="md:hidden p-2 rounded-md text-ink/70 hover:text-ink cursor-pointer"
-      aria-label="Toggle menu"
+      aria-label={t.menuLabel}
     >
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -51,7 +95,7 @@ const navLinks = [
   <!-- Mobile menu panel -->
   <div id="mobile-menu-panel" class="hidden peer-checked/menu:block md:hidden border-t border-gray-100 bg-cream">
     <nav class="flex flex-col px-4 py-4 gap-4">
-      {navLinks.map(({ label, href }) => (
+      {t.navLinks.map(({ label, href }) => (
         <a
           href={href}
           class="text-sm font-semibold text-ink/70 hover:text-ink transition-colors"
@@ -59,11 +103,27 @@ const navLinks = [
           {label}
         </a>
       ))}
+
+      <div class="flex items-center gap-1.5 text-sm font-semibold" aria-label="Language">
+        {langLinks.map(({ code, label, href }, i) => (
+          <>
+            {i > 0 && <span class="text-ink/30" aria-hidden="true">/</span>}
+            <a
+              href={href}
+              aria-current={code === lang ? 'page' : undefined}
+              class={code === lang ? 'text-ink' : 'text-ink/50 hover:text-ink transition-colors'}
+            >
+              {label}
+            </a>
+          </>
+        ))}
+      </div>
+
       <a
         href="#contact"
         class="inline-flex items-center justify-center px-4 py-2 rounded-full bg-coral text-white text-sm font-medium hover:bg-coral-700 transition-colors"
       >
-        Pilot pre školu
+        {t.cta}
       </a>
     </nav>
   </div>
