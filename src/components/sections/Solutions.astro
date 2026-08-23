@@ -1,86 +1,93 @@
 ---
-const solutions = [
+const alternatives = [
   {
-    title: 'Jeden systém pre všetkých',
-    description: 'Jednoduchý, jednotný systém pre celú školu.',
-    icon: 'school',
+    title: 'Telefón v taške',
+    drawback: 'stále dostupný a láka na používanie',
   },
   {
-    title: 'Bez výnimiek a dohadovania',
-    description: 'Jasné pravidlá bez zbytočných diskusií.',
-    icon: 'rules',
+    title: 'Box s telefónmi',
+    drawback: 'zbieranie a rozdávanie každý deň',
   },
   {
-    title: 'Dôvera namiesto zákazov',
-    description: 'Mobil ostáva pri žiakovi, ale pod kontrolou.',
-    icon: 'phone-lock',
+    title: 'Skrinky',
+    drawback: 'zaberajú priestor a niečo stoja',
   },
-  {
-    title: 'Pomôžeme vám začať',
-    description: 'Podpora pri zavedení systému.',
-    icon: 'support',
-  },
+];
+
+const pauciBenefits = [
+  'Mobil zostáva pri žiakovi',
+  'Fyzická bariéra proti používaniu',
+  'Žiadne zbieranie ani skladovanie',
 ];
 ---
 
 <section id="solutions" class="mt-[5.75rem] pt-2 sm:pt-[4.5rem] lg:pt-[8.5rem] pb-28 scroll-mt-16">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid gap-12 md:grid-cols-[2fr_3fr] md:gap-0">
-      <!-- Left: heading + intro -->
-      <div class="flex flex-col items-center text-center md:items-end md:text-right md:pr-14 lg:pr-20">
-        <h2 class="text-4xl sm:text-5xl font-bold text-ink leading-tight">
-          Naše riešenia
-        </h2>
-        <span class="mt-8 h-0.5 w-10 bg-ink/60" aria-hidden="true"></span>
-        <p class="mt-8 text-lg leading-relaxed text-ink/70 max-w-xs">
-          Navrhnuté tak, aby odstránili prekážky na každej úrovni.
-        </p>
+    <div class="text-center mb-14 max-w-3xl mx-auto">
+      <h2 class="text-4xl sm:text-5xl font-bold text-ink">
+        Kam s mobilom počas vyučovania?
+      </h2>
+      <p class="mt-6 text-lg leading-relaxed text-ink/70">
+        Školy dnes používajú rôzne spôsoby regulácie mobilov. Telefóny môžu
+        zostať v školskej taške, môžu sa odovzdávať učiteľovi, ukladať
+        spoločne alebo do samostatných skriniek.
+      </p>
+      <p class="mt-4 text-lg leading-relaxed text-ink/70">
+        Každé z týchto riešení však prináša určitý kompromis – medzi kontrolou
+        používania, bezpečnosťou zariadení, potrebným priestorom a dodatočnou
+        organizáciou pre školu.
+      </p>
+    </div>
+
+    <div class="grid items-center gap-10 md:grid-cols-[1fr_auto_1.15fr] md:gap-6 lg:gap-10 max-w-5xl mx-auto">
+      <!-- The three compromises -->
+      <div class="flex flex-col gap-4">
+        {alternatives.map(({ title, drawback }) => (
+          <div class="flex items-center gap-4 rounded-2xl border border-ink/10 bg-[#FFF8F1] px-5 py-4">
+            <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-ink/15 text-ink/40">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true">
+                <path d="M5.4 5.8 C 9.6 10, 13.8 14.4, 18.4 18.6" />
+                <path d="M18.6 5.4 C 14.2 9.8, 9.8 14.2, 5.6 18.4" />
+              </svg>
+            </span>
+            <div class="text-left">
+              <h3 class="text-base font-bold text-ink/70">{title}</h3>
+              <p class="mt-0.5 text-sm text-ink/50">{drawback}</p>
+            </div>
+          </div>
+        ))}
       </div>
 
-      <!-- Right: icon list, divided from the left column -->
-      <div class="md:border-l md:border-ink/15 md:pl-14 lg:pl-20">
-        <ul class="flex flex-col gap-12">
-          {solutions.map(({ title, description, icon }) => (
-            <li class="flex items-start gap-6">
-              <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-ink text-white">
-                {icon === 'school' && (
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M4 21V10l8-5 8 5v11" />
-                    <path d="M3 21h18" />
-                    <path d="M10 21v-4a2 2 0 0 1 4 0v4" />
-                    <path d="M12 5V2.5h3.5" />
-                  </svg>
-                )}
-                {icon === 'rules' && (
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <rect x="5" y="4" width="14" height="17" rx="2" />
-                    <path d="M9 4V2.5h6V4" />
-                    <path d="M9 13.5l2.2 2.2 4-4.5" />
-                  </svg>
-                )}
-                {icon === 'phone-lock' && (
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <rect x="7" y="2.5" width="10" height="19" rx="2" />
-                    <path d="M10.5 11.5v-1.25a1.5 1.5 0 0 1 3 0v1.25" />
-                    <rect x="9.75" y="11.5" width="4.5" height="3.75" rx="0.8" />
-                    <path d="M11 18.5h2" />
-                  </svg>
-                )}
-                {icon === 'support' && (
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M4 13a8 8 0 0 1 16 0" />
-                    <rect x="3" y="13" width="4" height="6" rx="1.5" />
-                    <rect x="17" y="13" width="4" height="6" rx="1.5" />
-                    <path d="M19 19v1.5a1.5 1.5 0 0 1-1.5 1.5H13" />
-                  </svg>
-                )}
+      <!-- Hand-drawn arrow: these compromises lead to Pauči -->
+      <div class="flex items-center justify-center text-coral">
+        <svg xmlns="http://www.w3.org/2000/svg" class="hidden md:block h-12 w-16" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 26 C 18 20, 36 22, 52 24" />
+          <path d="M42 14 C 46.6 18, 51 21.4, 56 24.2 C 50.6 27, 45.8 30.4, 41.4 34.4" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="md:hidden h-14 w-10 rotate-90" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 26 C 18 20, 36 22, 52 24" />
+          <path d="M42 14 C 46.6 18, 51 21.4, 56 24.2 C 50.6 27, 45.8 30.4, 41.4 34.4" />
+        </svg>
+      </div>
+
+      <!-- Pauči — the one solution that covers it all -->
+      <div class="relative rounded-2xl border-2 border-coral bg-white px-8 py-9 shadow-lg md:rotate-1">
+        <span class="absolute -top-3.5 right-6 rounded-full bg-coral px-4 py-1.5 text-sm font-bold text-white">
+          Pauči
+        </span>
+        <h3 class="text-2xl font-bold text-ink">Puzdro Pauči</h3>
+        <p class="mt-1 text-sm font-semibold text-coral">
+          jedno riešenie bez kompromisov
+        </p>
+        <ul class="mt-5 space-y-3 text-left">
+          {pauciBenefits.map((benefit) => (
+            <li class="flex items-center gap-3">
+              <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-coral text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4.5 13 C 7 15.4, 8.6 17, 9.8 18.6 C 12.8 13.6, 16.4 9.2, 20 5.8" />
+                </svg>
               </span>
-              <div>
-                <h3 class="text-xl sm:text-2xl font-bold text-ink">{title}</h3>
-                <p class="mt-3 max-w-sm text-sm leading-relaxed text-ink/70">
-                  {description}
-                </p>
-              </div>
+              <span class="font-semibold text-ink">{benefit}</span>
             </li>
           ))}
         </ul>

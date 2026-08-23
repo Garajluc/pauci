@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+import Highlight from '../Highlight.astro';
+import heroPouch from '../../assets/hero-pouch.png';
+
+const callouts = [
+  {
+    title: 'Bez ihlíc',
+    description: 'Žiadne ostré prvky, s ktorými by deti prichádzali do kontaktu.',
+  },
+  {
+    title: 'Samostatné uzamknutie',
+    description: 'Puzdro sa dokáže uzamknúť samostatne, bez ďalšieho zariadenia.',
+  },
+  {
+    title: 'Centrálne odomknutie',
+    description: 'Na otvorenie slúži centrálne odomykacie zariadenie umiestnené školou na určenom mieste.',
+  },
+];
+---
+
+<section id="product" class="pt-32 pb-20 scroll-mt-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid gap-12 md:grid-cols-2 items-center">
+      <!-- Product visual -->
+      <div class="relative flex items-center justify-center rounded-2xl bg-white border border-gray-100 shadow-sm p-10 sm:p-14">
+        <Image
+          src={heroPouch}
+          alt="Detail uzamykateľného puzdra Pauči"
+          class="w-full max-w-[240px] h-auto"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- Copy + callouts -->
+      <div class="text-center md:text-left">
+        <h2 class="text-3xl sm:text-4xl font-bold text-ink leading-tight mb-6">
+          Jednoduchý mechanizmus. Žiadne ostré prvky.
+        </h2>
+        <p class="text-lg text-ink/70 leading-relaxed mb-4">
+          Pri produkte, ktorý majú deti používať každý deň, je spôsob
+          uzamykania rovnako dôležitý ako samotné puzdro.
+        </p>
+        <p class="text-lg text-ink/70 leading-relaxed mb-8">
+          Preto vyvíjame vlastný mechanizmus navrhnutý tak, aby bol
+          <Highlight rotate="rotate-1">jednoduchý, intuitívny a bezpečný</Highlight>{' '}
+          pri každodennom používaní.
+        </p>
+
+        <ul class="space-y-5 text-left">
+          {callouts.map(({ title, description }) => (
+            <li class="flex items-start gap-4">
+              <span class="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-coral text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4.5 13 C 7 15.4, 8.6 17, 9.8 18.6 C 12.8 13.6, 16.4 9.2, 20 5.8" />
+                </svg>
+              </span>
+              <div>
+                <p class="font-bold text-ink">{title}</p>
+                <p class="mt-1 text-sm text-ink/70 leading-relaxed">{description}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

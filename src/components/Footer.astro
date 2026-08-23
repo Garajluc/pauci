@@ -15,14 +15,15 @@ const currentYear = new Date().getFullYear();
   />
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-      <a href="/" aria-label="Pauci home">
+      <a href={import.meta.env.BASE_URL} aria-label="Pauci home">
         <Logo textClass="text-white" markClass="h-7" />
       </a>
 
       <nav class="flex flex-wrap justify-center gap-6 text-sm">
         <a href="#benefits" class="hover:text-white transition-colors">Prečo Pauči</a>
-        <a href="#solutions" class="hover:text-white transition-colors">Naše riešenia</a>
-        <a href="#how-it-works" class="hover:text-white transition-colors">Ako to funguje</a>
+        <a href="#how-it-works" class="hover:text-white transition-colors">Ako funguje</a>
+        <a href="#product" class="hover:text-white transition-colors">O produkte</a>
+        <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
         <a href="#contact" class="hover:text-white transition-colors">Kontakt</a>
       </nav>
     </div>

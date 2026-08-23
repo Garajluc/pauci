@@ -1,0 +1,13 @@
+---
+// Hand-drawn marker highlight for the page's most important statements.
+// Use sparingly — it only works when it's rare.
+const { rotate = '-rotate-1' } = Astro.props;
+---
+
+<span class="relative inline-block isolate font-semibold text-ink">
+  <span
+    class={`absolute inset-x-0 inset-y-[8%] -z-10 rounded-md bg-[#FFD09E]/70 ${rotate}`}
+    aria-hidden="true"
+  ></span>
+  <slot />
+</span>

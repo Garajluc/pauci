@@ -1,0 +1,71 @@
+---
+import Highlight from '../Highlight.astro';
+---
+
+<section id="why-now" class="pt-20 scroll-mt-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid gap-10 md:grid-cols-[2fr_3fr] md:gap-0 items-center">
+      <!-- Left: big year + short label -->
+      <div class="flex flex-col items-center text-center md:items-end md:text-right md:pr-14 lg:pr-20">
+        <span class="relative inline-block">
+          <span class="text-7xl sm:text-8xl lg:text-9xl font-extrabold tracking-tight text-coral leading-none">
+            2025
+          </span>
+          <!-- hand-drawn underline -->
+          <svg
+            class="absolute left-0 -bottom-3 w-full h-5"
+            viewBox="0 0 200 20"
+            preserveAspectRatio="none"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M4 12 C 40 6, 90 16, 130 10 C 160 6, 185 12, 196 9"
+              stroke="#FFB361"
+              stroke-width="6"
+              stroke-linecap="round"
+            />
+          </svg>
+        </span>
+        <p class="mt-8 text-lg font-semibold text-ink max-w-xs">
+          Regulácia používania mobilov na základných školách
+        </p>
+      </div>
+
+      <!-- Right: explanation -->
+      <div class="md:border-l md:border-ink/15 md:pl-14 lg:pl-20 text-center md:text-left">
+        <h2 class="text-3xl sm:text-4xl font-bold text-ink leading-tight mb-6">
+          Mobily v školách potrebujú jasné pravidlá.
+        </h2>
+        <p class="text-lg text-ink/70 leading-relaxed mb-4">
+          Mobilné telefóny sú prirodzenou súčasťou života detí. Počas
+          vyučovania však môžu odvádzať pozornosť, narúšať sústredenie a
+          obmedzovať prirodzenú interakciu medzi žiakmi.
+        </p>
+        <p class="text-lg text-ink/70 leading-relaxed mb-4">
+          Od januára 2025 sa používanie mobilných telefónov na slovenských
+          základných školách reguluje.
+          <Highlight>Školy si pritom musia nastaviť vlastný spôsob,</Highlight>{' '}
+          ako pravidlá zaviesť do každodenného fungovania.
+        </p>
+        <p class="text-lg font-semibold text-ink leading-relaxed">
+          Pauči prináša jednoduchý spôsob, ako používanie mobilov obmedziť bez
+          toho, aby škola musela telefóny od žiakov hromadne preberať a
+          skladovať.
+        </p>
+        <a
+          href="https://www.minedu.sk/data/att/4dd/31672.0c6aa4.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-6 inline-flex items-center gap-2 font-semibold text-coral hover:text-coral-700 transition-colors"
+        >
+          Viac o regulácii mobilov na školách
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-5" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 26 C 18 20, 36 22, 52 24" />
+            <path d="M42 14 C 46.6 18, 51 21.4, 56 24.2 C 50.6 27, 45.8 30.4, 41.4 34.4" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
