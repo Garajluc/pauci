@@ -1,0 +1,75 @@
+---
+import Highlight from '../Highlight.astro';
+
+const roadmap = [
+  { label: 'Prototyp', done: true },
+  { label: 'Profesionálny prototyp', done: false },
+  { label: 'Testovanie', done: false },
+  { label: 'Pilot', done: false },
+  { label: 'Prvá séria', done: false },
+];
+---
+
+<section id="pilot" class="py-20 scroll-mt-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <p class="text-sm font-bold uppercase tracking-widest text-coral mb-3">
+        Kde sme dnes
+      </p>
+      <h2 class="text-4xl sm:text-5xl font-bold text-ink">
+        Pauči už nie je iba nápad.
+      </h2>
+      <p class="mt-6 text-lg leading-relaxed text-ink/70">
+        Máme vytvorený prvý prototyp puzdra a funkčný prototyp vlastného
+        uzamykacieho a odomykacieho mechanizmu.
+      </p>
+      <p class="mt-4 text-lg leading-relaxed text-ink/70">
+        Aktuálne pracujeme na profesionálnom prototype a pripravujeme produkt
+        na <Highlight>prvé testovanie v reálnom školskom prostredí.</Highlight>
+      </p>
+    </div>
+
+    <!-- Roadmap -->
+    <ol class="flex flex-wrap items-center justify-center gap-x-2 gap-y-4 mb-16">
+      {roadmap.map(({ label, done }, i) => (
+        <>
+          <li
+            class={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold ${
+              done
+                ? 'bg-coral text-white'
+                : 'border border-ink/20 text-ink/70 bg-white/60'
+            }`}
+          >
+            {done && (
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4.5 13 C 7 15.4, 8.6 17, 9.8 18.6 C 12.8 13.6, 16.4 9.2, 20 5.8" />
+              </svg>
+            )}
+            {label}
+          </li>
+          {i < roadmap.length - 1 && (
+            <span class="text-ink/30 font-bold" aria-hidden="true">→</span>
+          )}
+        </>
+      ))}
+    </ol>
+
+    <!-- Pilot CTA on the peach background -->
+    <div class="relative overflow-hidden rounded-2xl bg-[#FFD09E] px-8 py-12 sm:px-12 sm:py-14 text-center">
+      <h3 class="text-2xl sm:text-3xl font-bold text-ink max-w-2xl mx-auto leading-tight">
+        Hľadáme školy, ktoré chcú byť pri tom od začiatku.
+      </h3>
+      <p class="mt-4 text-lg text-ink/80 max-w-2xl mx-auto leading-relaxed">
+        Ak vo vašej škole riešite používanie mobilných telefónov a zaujíma vás
+        Pauči, radi sa s vami porozprávame o možnosti zapojiť sa do prvého
+        pilotného testovania.
+      </p>
+      <a
+        href="#contact"
+        class="mt-8 inline-flex items-center justify-center px-8 py-3 rounded-full bg-coral text-white font-semibold hover:bg-coral-700 transition-colors"
+      >
+        Mám záujem o pilot
+      </a>
+    </div>
+  </div>
+</section>

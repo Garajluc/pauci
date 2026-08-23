@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import Highlight from '../Highlight.astro';
 import heroPouch from '../../assets/hero-pouch.png';
 import heroScribbles from '../../assets/hero-scribbles.svg';
 import paperPlane from '../../assets/paper-plane.png';
@@ -11,6 +12,14 @@ import paperPlane from '../../assets/paper-plane.png';
     alt=""
     aria-hidden="true"
     class="absolute top-0 inset-x-0 w-full h-auto -z-10 opacity-35 pointer-events-none select-none"
+    loading="eager"
+  />
+  <!-- Second copy straddling the hero/next-section boundary, fading out downwards for a smooth transition -->
+  <Image
+    src={heroScribbles}
+    alt=""
+    aria-hidden="true"
+    class="absolute top-full inset-x-0 w-full h-auto -translate-y-[15%] -z-10 opacity-25 pointer-events-none select-none [mask-image:linear-gradient(to_bottom,black_55%,transparent_100%)]"
     loading="eager"
   />
   <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
@@ -27,23 +36,26 @@ import paperPlane from '../../assets/paper-plane.png';
             <span class="relative">Jednoduchá</span>
           </span> regulácia mobilov počas vyučovania.
         </h1>
-        <p class="max-w-xl mx-auto md:mx-0 text-lg sm:text-xl text-ink/70 mb-10">
-          Bezpečné a praktické riešenie pre každodenné používanie. Pomáhame
-          školám splniť legislatívne požiadavky bez zbytočnej administratívy a
-          stresu.
+        <p class="max-w-xl mx-auto md:mx-0 text-lg sm:text-xl text-ink/80 font-medium mb-4">
+          Žiak má svoj telefón stále pri sebe, ale
+          <Highlight>počas vyučovania ho nemôže používať.</Highlight>
+        </p>
+        <p class="max-w-xl mx-auto md:mx-0 text-lg text-ink/70 mb-10">
+          Pauči je uzamykateľné puzdro na mobilný telefón navrhnuté pre
+          každodenné používanie v školách.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
           <a
             href="#contact"
             class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-coral text-white font-semibold hover:bg-coral-700 transition-colors"
           >
-            Vyskúšaj
+            Mám záujem o pilot
           </a>
           <a
             href="#how-it-works"
             class="inline-flex items-center justify-center px-8 py-3 rounded-full border-2 border-ink bg-transparent text-ink font-semibold hover:bg-ink/5 transition-colors"
           >
-            Stiahnuť katalóg
+            Ako to funguje
           </a>
         </div>
 
@@ -51,7 +63,7 @@ import paperPlane from '../../assets/paper-plane.png';
           src={paperPlane}
           alt=""
           aria-hidden="true"
-          class="relative w-56 sm:w-72 h-auto mt-6 mx-auto md:mx-0 md:mt-0 md:absolute md:top-[calc(100%+40px)] md:left-11 md:w-[18rem] z-[60] pointer-events-none select-none"
+          class="absolute -z-10 bottom-0 left-1/2 -translate-x-1/2 w-56 sm:w-72 h-auto opacity-60 md:opacity-100 md:z-[60] md:bottom-auto md:left-11 md:translate-x-0 md:top-[calc(100%+40px)] md:w-[18rem] pointer-events-none select-none"
           loading="lazy"
         />
       </div>
@@ -59,7 +71,7 @@ import paperPlane from '../../assets/paper-plane.png';
       <Image
         src={heroPouch}
         alt="Textilné puzdro Pauci na mobilný telefón"
-        class="w-full max-w-[214px] mx-auto h-auto"
+        class="hidden md:block w-full max-w-[300px] mx-auto h-auto"
         loading="eager"
       />
     </div>

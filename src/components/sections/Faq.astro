@@ -1,0 +1,58 @@
+---
+const faqs = [
+  {
+    question: 'Blokuje Pauči mobilný signál?',
+    answer:
+      'Nie. Aktuálne Pauči vyvíjame tak, aby telefón zostal pripojený k mobilnej sieti. Puzdro fyzicky obmedzuje jeho používanie, nie jeho signál.',
+  },
+  {
+    question: 'Musí učiteľ zamykať každé puzdro?',
+    answer:
+      'Nie. Puzdro je navrhnuté tak, aby sa dalo uzamknúť samostatne bez centrálneho zariadenia.',
+  },
+  {
+    question: 'Ako sa Pauči otvára?',
+    answer:
+      'Na otvorenie je potrebné centrálne odomykacie zariadenie, ktoré môže byť umiestnené na určenom mieste v škole.',
+  },
+  {
+    question: 'Zostáva telefón počas dňa pri žiakovi?',
+    answer:
+      'Áno. Telefón zostáva vo vlastnom Pauči pri žiakovi, napríklad v školskej taške.',
+  },
+  {
+    question: 'Je Pauči už možné objednať?',
+    answer:
+      'Produkt sa momentálne nachádza vo fáze prototypovania a pripravujeme prvé testovanie so školami. Ak máte záujem o pilot alebo chcete vedieť, keď bude Pauči dostupné, kontaktujte nás.',
+  },
+  {
+    question: 'Koľko bude Pauči stáť?',
+    answer:
+      'Cenotvorbu momentálne pripravujeme spolu s ďalšou fázou vývoja produktu. Pre školy predpokladáme model jednorazového nákupu potrebného počtu puzdier a centrálnych odomykacích zariadení.',
+  },
+];
+---
+
+<section id="faq" class="py-20 scroll-mt-16">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl sm:text-5xl font-bold text-ink">Časté otázky</h2>
+    </div>
+
+    <div class="divide-y divide-ink/10 border-y border-ink/10">
+      {faqs.map(({ question, answer }) => (
+        <details class="group py-5">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-left font-semibold text-ink [&::-webkit-details-marker]:hidden">
+            {question}
+            <span class="shrink-0 text-coral transition-transform duration-200 group-open:rotate-45">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+            </span>
+          </summary>
+          <p class="mt-3 text-ink/70 leading-relaxed pr-8">{answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

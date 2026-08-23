@@ -3,8 +3,9 @@ import Logo from './Logo.astro';
 
 const navLinks = [
   { label: 'Prečo Pauči', href: '#benefits' },
-  { label: 'Naše riešenia', href: '#solutions' },
-  { label: 'Ako to funguje', href: '#how-it-works' },
+  { label: 'Ako funguje', href: '#how-it-works' },
+  { label: 'O produkte', href: '#product' },
+  { label: 'FAQ', href: '#faq' },
   { label: 'Kontakt', href: '#contact' },
 ];
 ---
@@ -30,7 +31,7 @@ const navLinks = [
       href="#contact"
       class="hidden md:inline-flex items-center px-4 py-2 rounded-full bg-coral text-white text-sm font-medium hover:bg-coral-700 transition-colors"
     >
-      Vyskúšaj
+      Pilot pre školu
     </a>
 
     <!-- Mobile nav toggle (CSS-only, no JS required) -->
@@ -48,7 +49,7 @@ const navLinks = [
   <input type="checkbox" id="mobile-menu-toggle" class="sr-only peer/menu" aria-hidden="true" />
 
   <!-- Mobile menu panel -->
-  <div class="hidden peer-checked/menu:block md:hidden border-t border-gray-100 bg-cream">
+  <div id="mobile-menu-panel" class="hidden peer-checked/menu:block md:hidden border-t border-gray-100 bg-cream">
     <nav class="flex flex-col px-4 py-4 gap-4">
       {navLinks.map(({ label, href }) => (
         <a
@@ -62,8 +63,30 @@ const navLinks = [
         href="#contact"
         class="inline-flex items-center justify-center px-4 py-2 rounded-full bg-coral text-white text-sm font-medium hover:bg-coral-700 transition-colors"
       >
-        Vyskúšaj
+        Pilot pre školu
       </a>
     </nav>
   </div>
 </header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle') as HTMLInputElement | null;
+  const panel = document.getElementById('mobile-menu-panel');
+
+  if (toggle) {
+    // Width-only check so mobile browsers' collapsing URL bar (height change) doesn't close the menu
+    let lastWidth = window.innerWidth;
+    window.addEventListener('resize', () => {
+      if (window.innerWidth !== lastWidth) {
+        lastWidth = window.innerWidth;
+        toggle.checked = false;
+      }
+    });
+
+    panel?.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        toggle.checked = false;
+      });
+    });
+  }
+</script>

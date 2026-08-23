@@ -5,13 +5,13 @@ interface Props {
 }
 
 const {
-  title = 'Pauci – Smart Solutions',
-  description = 'Pauci helps you achieve more with less.',
+  title = 'Pauči | Jednoduchá regulácia mobilov v školách',
+  description = 'Pauči je uzamykateľné puzdro na mobil určené na jednoduchú reguláciu používania telefónov počas vyučovania.',
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="sk">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,7 +19,7 @@ const {
     <title>{title}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
-  <body class="antialiased text-ink bg-cream">
+  <body class="antialiased text-ink bg-cream overflow-x-clip">
     <slot />
   </body>
 </html>
