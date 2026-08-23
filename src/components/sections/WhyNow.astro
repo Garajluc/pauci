@@ -1,5 +1,33 @@
 ---
 import Highlight from '../Highlight.astro';
+import { getLang } from '../../i18n';
+
+const lang = getLang(Astro.currentLocale);
+
+const content = {
+  sk: {
+    yearLabel: 'Regulácia používania mobilov na základných školách',
+    heading: 'Mobily v školách potrebujú jasné pravidlá.',
+    p1: 'Mobilné telefóny sú prirodzenou súčasťou života detí. Počas vyučovania však môžu odvádzať pozornosť, narúšať sústredenie a obmedzovať prirodzenú interakciu medzi žiakmi.',
+    p2a: 'Od januára 2025 sa používanie mobilných telefónov na slovenských základných školách reguluje.',
+    p2Highlight: 'Školy si pritom musia nastaviť vlastný spôsob,',
+    p2b: 'ako pravidlá zaviesť do každodenného fungovania.',
+    p3: 'Pauči prináša jednoduchý spôsob, ako používanie mobilov obmedziť bez toho, aby škola musela telefóny od žiakov hromadne preberať a skladovať.',
+    linkLabel: 'Viac o regulácii mobilov na školách',
+  },
+  en: {
+    yearLabel: 'Regulation of phone use in primary schools',
+    heading: 'Phones in schools need clear rules.',
+    p1: "Mobile phones are a natural part of children's lives. During lessons, however, they can distract attention, disrupt focus and limit natural interaction between students.",
+    p2a: 'Since January 2025, the use of mobile phones in Slovak primary schools has been regulated.',
+    p2Highlight: 'Each school must choose its own way',
+    p2b: 'to bring the rules into everyday practice.',
+    p3: 'Pauči offers a simple way to limit phone use without the school having to collect and store the phones every day.',
+    linkLabel: 'More about the phone regulation in schools',
+  },
+} as const;
+
+const t = content[lang];
 ---
 
 <section id="why-now" class="pt-20 scroll-mt-16">
@@ -28,30 +56,25 @@ import Highlight from '../Highlight.astro';
           </svg>
         </span>
         <p class="mt-8 text-lg font-semibold text-ink max-w-xs">
-          Regulácia používania mobilov na základných školách
+          {t.yearLabel}
         </p>
       </div>
 
       <!-- Right: explanation -->
       <div class="md:border-l md:border-ink/15 md:pl-14 lg:pl-20 text-center md:text-left">
         <h2 class="text-3xl sm:text-4xl font-bold text-ink leading-tight mb-6">
-          Mobily v školách potrebujú jasné pravidlá.
+          {t.heading}
         </h2>
         <p class="text-lg text-ink/70 leading-relaxed mb-4">
-          Mobilné telefóny sú prirodzenou súčasťou života detí. Počas
-          vyučovania však môžu odvádzať pozornosť, narúšať sústredenie a
-          obmedzovať prirodzenú interakciu medzi žiakmi.
+          {t.p1}
         </p>
         <p class="text-lg text-ink/70 leading-relaxed mb-4">
-          Od januára 2025 sa používanie mobilných telefónov na slovenských
-          základných školách reguluje.
-          <Highlight>Školy si pritom musia nastaviť vlastný spôsob,</Highlight>{' '}
-          ako pravidlá zaviesť do každodenného fungovania.
+          {t.p2a}
+          <Highlight>{t.p2Highlight}</Highlight>{' '}
+          {t.p2b}
         </p>
         <p class="text-lg font-semibold text-ink leading-relaxed">
-          Pauči prináša jednoduchý spôsob, ako používanie mobilov obmedziť bez
-          toho, aby škola musela telefóny od žiakov hromadne preberať a
-          skladovať.
+          {t.p3}
         </p>
         <a
           href="https://www.minedu.sk/data/att/4dd/31672.0c6aa4.pdf"
@@ -59,7 +82,7 @@ import Highlight from '../Highlight.astro';
           rel="noopener noreferrer"
           class="mt-6 inline-flex items-center gap-2 font-semibold text-coral hover:text-coral-700 transition-colors"
         >
-          Viac o regulácii mobilov na školách
+          {t.linkLabel}
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-5" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M4 26 C 18 20, 36 22, 52 24" />
             <path d="M42 14 C 46.6 18, 51 21.4, 56 24.2 C 50.6 27, 45.8 30.4, 41.4 34.4" />

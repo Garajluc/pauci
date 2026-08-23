@@ -1,37 +1,71 @@
 ---
 import Highlight from '../Highlight.astro';
+import { getLang } from '../../i18n';
 
-const roadmap = [
-  { label: 'Prototyp', done: true },
-  { label: 'Profesionálny prototyp', done: false },
-  { label: 'Testovanie', done: false },
-  { label: 'Pilot', done: false },
-  { label: 'Prvá séria', done: false },
-];
+const lang = getLang(Astro.currentLocale);
+
+const content = {
+  sk: {
+    kicker: 'Kde sme dnes',
+    heading: 'Pauči už nie je iba nápad.',
+    p1: 'Máme vytvorený prvý prototyp puzdra a funkčný prototyp vlastného uzamykacieho a odomykacieho mechanizmu.',
+    p2a: 'Aktuálne pracujeme na profesionálnom prototype a pripravujeme produkt na',
+    p2Highlight: 'prvé testovanie v reálnom školskom prostredí.',
+    roadmap: [
+      { label: 'Prototyp', done: true },
+      { label: 'Profesionálny prototyp', done: false },
+      { label: 'Testovanie', done: false },
+      { label: 'Pilot', done: false },
+      { label: 'Prvá séria', done: false },
+    ],
+    ctaHeading: 'Hľadáme školy, ktoré chcú byť pri tom od začiatku.',
+    ctaText:
+      'Ak vo vašej škole riešite používanie mobilných telefónov a zaujíma vás Pauči, radi sa s vami porozprávame o možnosti zapojiť sa do prvého pilotného testovania.',
+    ctaButton: 'Mám záujem o pilot',
+  },
+  en: {
+    kicker: 'Where we are today',
+    heading: 'Pauči is no longer just an idea.',
+    p1: 'We have a first prototype of the pouch and a working prototype of our own locking and unlocking mechanism.',
+    p2a: "We're now working on a professional prototype and preparing the product for",
+    p2Highlight: 'its first testing in a real school environment.',
+    roadmap: [
+      { label: 'Prototype', done: true },
+      { label: 'Professional prototype', done: false },
+      { label: 'Testing', done: false },
+      { label: 'Pilot', done: false },
+      { label: 'First production run', done: false },
+    ],
+    ctaHeading: "We're looking for schools that want to be part of it from the start.",
+    ctaText:
+      "If your school is working out how to handle phone use and Pauči sounds interesting, we'd love to talk about joining the first pilot testing.",
+    ctaButton: "I'm interested in a pilot",
+  },
+} as const;
+
+const t = content[lang];
 ---
 
 <section id="pilot" class="py-20 scroll-mt-16">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center max-w-3xl mx-auto mb-12">
       <p class="text-sm font-bold uppercase tracking-widest text-coral mb-3">
-        Kde sme dnes
+        {t.kicker}
       </p>
       <h2 class="text-4xl sm:text-5xl font-bold text-ink">
-        Pauči už nie je iba nápad.
+        {t.heading}
       </h2>
       <p class="mt-6 text-lg leading-relaxed text-ink/70">
-        Máme vytvorený prvý prototyp puzdra a funkčný prototyp vlastného
-        uzamykacieho a odomykacieho mechanizmu.
+        {t.p1}
       </p>
       <p class="mt-4 text-lg leading-relaxed text-ink/70">
-        Aktuálne pracujeme na profesionálnom prototype a pripravujeme produkt
-        na <Highlight>prvé testovanie v reálnom školskom prostredí.</Highlight>
+        {t.p2a} <Highlight>{t.p2Highlight}</Highlight>
       </p>
     </div>
 
     <!-- Roadmap -->
     <ol class="flex flex-wrap items-center justify-center gap-x-2 gap-y-4 mb-16">
-      {roadmap.map(({ label, done }, i) => (
+      {t.roadmap.map(({ label, done }, i) => (
         <>
           <li
             class={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold ${
@@ -47,7 +81,7 @@ const roadmap = [
             )}
             {label}
           </li>
-          {i < roadmap.length - 1 && (
+          {i < t.roadmap.length - 1 && (
             <span class="text-ink/30 font-bold" aria-hidden="true">→</span>
           )}
         </>
@@ -57,18 +91,16 @@ const roadmap = [
     <!-- Pilot CTA on the peach background -->
     <div class="relative overflow-hidden rounded-2xl bg-[#FFD09E] px-8 py-12 sm:px-12 sm:py-14 text-center">
       <h3 class="text-2xl sm:text-3xl font-bold text-ink max-w-2xl mx-auto leading-tight">
-        Hľadáme školy, ktoré chcú byť pri tom od začiatku.
+        {t.ctaHeading}
       </h3>
       <p class="mt-4 text-lg text-ink/80 max-w-2xl mx-auto leading-relaxed">
-        Ak vo vašej škole riešite používanie mobilných telefónov a zaujíma vás
-        Pauči, radi sa s vami porozprávame o možnosti zapojiť sa do prvého
-        pilotného testovania.
+        {t.ctaText}
       </p>
       <a
         href="#contact"
         class="mt-8 inline-flex items-center justify-center px-8 py-3 rounded-full bg-coral text-white font-semibold hover:bg-coral-700 transition-colors"
       >
-        Mám záujem o pilot
+        {t.ctaButton}
       </a>
     </div>
   </div>

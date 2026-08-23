@@ -2,21 +2,58 @@
 import { Image } from 'astro:assets';
 import Highlight from '../Highlight.astro';
 import heroPouch from '../../assets/hero-pouch.png';
+import { getLang } from '../../i18n';
 
-const callouts = [
-  {
-    title: 'Bez ihlíc',
-    description: 'Žiadne ostré prvky, s ktorými by deti prichádzali do kontaktu.',
+const lang = getLang(Astro.currentLocale);
+
+const content = {
+  sk: {
+    imageAlt: 'Detail uzamykateľného puzdra Pauči',
+    heading: 'Jednoduchý mechanizmus. Žiadne ostré prvky.',
+    p1: 'Pri produkte, ktorý majú deti používať každý deň, je spôsob uzamykania rovnako dôležitý ako samotné puzdro.',
+    p2a: 'Preto vyvíjame vlastný mechanizmus navrhnutý tak, aby bol',
+    p2Highlight: 'jednoduchý, intuitívny a bezpečný',
+    p2b: 'pri každodennom používaní.',
+    callouts: [
+      {
+        title: 'Bez ihlíc',
+        description: 'Žiadne ostré prvky, s ktorými by deti prichádzali do kontaktu.',
+      },
+      {
+        title: 'Samostatné uzamknutie',
+        description: 'Puzdro sa dokáže uzamknúť samostatne, bez ďalšieho zariadenia.',
+      },
+      {
+        title: 'Centrálne odomknutie',
+        description: 'Na otvorenie slúži centrálne odomykacie zariadenie umiestnené školou na určenom mieste.',
+      },
+    ],
   },
-  {
-    title: 'Samostatné uzamknutie',
-    description: 'Puzdro sa dokáže uzamknúť samostatne, bez ďalšieho zariadenia.',
+  en: {
+    imageAlt: 'Detail of the lockable Pauči pouch',
+    heading: 'A simple mechanism. No sharp parts.',
+    p1: 'For a product children use every day, the locking mechanism matters as much as the pouch itself.',
+    p2a: "That's why we're developing our own mechanism, designed to be",
+    p2Highlight: 'simple, intuitive and safe',
+    p2b: 'in everyday use.',
+    callouts: [
+      {
+        title: 'No pins',
+        description: 'No sharp parts that children would come into contact with.',
+      },
+      {
+        title: 'Locks on its own',
+        description: 'The pouch locks by itself, without any extra device.',
+      },
+      {
+        title: 'Central unlocking',
+        description: 'Opening requires a central unlocking device placed by the school at a designated spot.',
+      },
+    ],
   },
-  {
-    title: 'Centrálne odomknutie',
-    description: 'Na otvorenie slúži centrálne odomykacie zariadenie umiestnené školou na určenom mieste.',
-  },
-];
+} as const;
+
+const t = content[lang];
 ---
 
 <section id="product" class="pt-32 pb-20 scroll-mt-16">
@@ -26,7 +63,7 @@ const callouts = [
       <div class="relative flex items-center justify-center rounded-2xl bg-white border border-gray-100 shadow-sm p-10 sm:p-14">
         <Image
           src={heroPouch}
-          alt="Detail uzamykateľného puzdra Pauči"
+          alt={t.imageAlt}
           class="w-full max-w-[240px] h-auto"
           loading="lazy"
         />
@@ -35,20 +72,19 @@ const callouts = [
       <!-- Copy + callouts -->
       <div class="text-center md:text-left">
         <h2 class="text-3xl sm:text-4xl font-bold text-ink leading-tight mb-6">
-          Jednoduchý mechanizmus. Žiadne ostré prvky.
+          {t.heading}
         </h2>
         <p class="text-lg text-ink/70 leading-relaxed mb-4">
-          Pri produkte, ktorý majú deti používať každý deň, je spôsob
-          uzamykania rovnako dôležitý ako samotné puzdro.
+          {t.p1}
         </p>
         <p class="text-lg text-ink/70 leading-relaxed mb-8">
-          Preto vyvíjame vlastný mechanizmus navrhnutý tak, aby bol
-          <Highlight rotate="rotate-1">jednoduchý, intuitívny a bezpečný</Highlight>{' '}
-          pri každodennom používaní.
+          {t.p2a}
+          <Highlight rotate="rotate-1">{t.p2Highlight}</Highlight>{' '}
+          {t.p2b}
         </p>
 
         <ul class="space-y-5 text-left">
-          {callouts.map(({ title, description }) => (
+          {t.callouts.map(({ title, description }) => (
             <li class="flex items-start gap-4">
               <span class="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-coral text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

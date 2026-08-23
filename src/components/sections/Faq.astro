@@ -1,46 +1,92 @@
 ---
-const faqs = [
-  {
-    question: 'Blokuje Pauči mobilný signál?',
-    answer:
-      'Nie. Aktuálne Pauči vyvíjame tak, aby telefón zostal pripojený k mobilnej sieti. Puzdro fyzicky obmedzuje jeho používanie, nie jeho signál.',
+import { getLang } from '../../i18n';
+
+const lang = getLang(Astro.currentLocale);
+
+const content = {
+  sk: {
+    heading: 'Časté otázky',
+    faqs: [
+      {
+        question: 'Blokuje Pauči mobilný signál?',
+        answer:
+          'Nie. Aktuálne Pauči vyvíjame tak, aby telefón zostal pripojený k mobilnej sieti. Puzdro fyzicky obmedzuje jeho používanie, nie jeho signál.',
+      },
+      {
+        question: 'Musí učiteľ zamykať každé puzdro?',
+        answer:
+          'Nie. Puzdro je navrhnuté tak, aby sa dalo uzamknúť samostatne bez centrálneho zariadenia.',
+      },
+      {
+        question: 'Ako sa Pauči otvára?',
+        answer:
+          'Na otvorenie je potrebné centrálne odomykacie zariadenie, ktoré môže byť umiestnené na určenom mieste v škole.',
+      },
+      {
+        question: 'Zostáva telefón počas dňa pri žiakovi?',
+        answer:
+          'Áno. Telefón zostáva vo vlastnom Pauči pri žiakovi, napríklad v školskej taške.',
+      },
+      {
+        question: 'Je Pauči už možné objednať?',
+        answer:
+          'Produkt sa momentálne nachádza vo fáze prototypovania a pripravujeme prvé testovanie so školami. Ak máte záujem o pilot alebo chcete vedieť, keď bude Pauči dostupné, kontaktujte nás.',
+      },
+      {
+        question: 'Koľko bude Pauči stáť?',
+        answer:
+          'Cenotvorbu momentálne pripravujeme spolu s ďalšou fázou vývoja produktu. Pre školy predpokladáme model jednorazového nákupu potrebného počtu puzdier a centrálnych odomykacích zariadení.',
+      },
+    ],
   },
-  {
-    question: 'Musí učiteľ zamykať každé puzdro?',
-    answer:
-      'Nie. Puzdro je navrhnuté tak, aby sa dalo uzamknúť samostatne bez centrálneho zariadenia.',
+  en: {
+    heading: 'Frequently asked questions',
+    faqs: [
+      {
+        question: 'Does Pauči block the phone signal?',
+        answer:
+          "No. We're developing Pauči so the phone stays connected to the mobile network. The pouch physically limits use of the phone, not its signal.",
+      },
+      {
+        question: 'Does the teacher have to lock each pouch?',
+        answer:
+          'No. The pouch is designed to lock on its own, without the central device.',
+      },
+      {
+        question: 'How is Pauči opened?',
+        answer:
+          'Opening requires the central unlocking device, which can be placed at a designated spot in the school.',
+      },
+      {
+        question: 'Does the phone stay with the student during the day?',
+        answer:
+          "Yes. The phone stays in the student's own Pauči, for example in their school bag.",
+      },
+      {
+        question: 'Can Pauči be ordered yet?',
+        answer:
+          "The product is currently in the prototyping phase and we're preparing the first testing with schools. If you're interested in a pilot or want to know when Pauči becomes available, get in touch.",
+      },
+      {
+        question: 'How much will Pauči cost?',
+        answer:
+          "We're working out pricing alongside the next phase of product development. For schools, we expect a one-time purchase of the needed number of pouches and central unlocking devices.",
+      },
+    ],
   },
-  {
-    question: 'Ako sa Pauči otvára?',
-    answer:
-      'Na otvorenie je potrebné centrálne odomykacie zariadenie, ktoré môže byť umiestnené na určenom mieste v škole.',
-  },
-  {
-    question: 'Zostáva telefón počas dňa pri žiakovi?',
-    answer:
-      'Áno. Telefón zostáva vo vlastnom Pauči pri žiakovi, napríklad v školskej taške.',
-  },
-  {
-    question: 'Je Pauči už možné objednať?',
-    answer:
-      'Produkt sa momentálne nachádza vo fáze prototypovania a pripravujeme prvé testovanie so školami. Ak máte záujem o pilot alebo chcete vedieť, keď bude Pauči dostupné, kontaktujte nás.',
-  },
-  {
-    question: 'Koľko bude Pauči stáť?',
-    answer:
-      'Cenotvorbu momentálne pripravujeme spolu s ďalšou fázou vývoja produktu. Pre školy predpokladáme model jednorazového nákupu potrebného počtu puzdier a centrálnych odomykacích zariadení.',
-  },
-];
+} as const;
+
+const t = content[lang];
 ---
 
 <section id="faq" class="py-20 scroll-mt-16">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
-      <h2 class="text-4xl sm:text-5xl font-bold text-ink">Časté otázky</h2>
+      <h2 class="text-4xl sm:text-5xl font-bold text-ink">{t.heading}</h2>
     </div>
 
     <div class="divide-y divide-ink/10 border-y border-ink/10">
-      {faqs.map(({ question, answer }) => (
+      {t.faqs.map(({ question, answer }) => (
         <details class="group py-5">
           <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-left font-semibold text-ink [&::-webkit-details-marker]:hidden">
             {question}
