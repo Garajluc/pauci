@@ -1,10 +1,10 @@
 ---
 import { Image } from 'astro:assets';
-import Highlight from '../Highlight.astro';
-import heroPouch from '../../assets/hero-pouch.png';
-import heroScribbles from '../../assets/hero-scribbles.svg';
-import paperPlane from '../../assets/paper-plane.png';
-import { getLang } from '../../i18n';
+import Highlight from '../../Highlight.astro';
+import PouchPlaceholder from '../../PouchPlaceholder.astro';
+import heroScribbles from '../../../assets/hero-scribbles.svg';
+import paperPlane from '../../../assets/paper-plane.png';
+import { getLang } from '../../../i18n';
 
 const lang = getLang(Astro.currentLocale);
 
@@ -18,6 +18,7 @@ const content = {
     ctaPilot: 'Mám záujem o pilot',
     ctaHow: 'Ako to funguje',
     pouchAlt: 'Textilné puzdro Pauci na mobilný telefón',
+    pouchPlaceholder: 'Ilustračný obrázok – finálna fotografia produktu bude doplnená',
   },
   en: {
     headlineHighlight: 'Simple',
@@ -28,6 +29,7 @@ const content = {
     ctaPilot: "I'm interested in a pilot",
     ctaHow: 'How it works',
     pouchAlt: 'Pauci fabric phone pouch',
+    pouchPlaceholder: 'Placeholder illustration – the final product photo is coming',
   },
 } as const;
 
@@ -95,11 +97,11 @@ const t = content[lang];
         />
       </div>
 
-      <Image
-        src={heroPouch}
+      <PouchPlaceholder
         alt={t.pouchAlt}
-        class="hidden md:block w-full max-w-[300px] mx-auto h-auto"
-        loading="eager"
+        caption={t.pouchPlaceholder}
+        class="hidden md:block mx-auto w-full max-w-[320px]"
+        frameClass="bg-white/60"
       />
     </div>
   </div>

@@ -1,0 +1,63 @@
+---
+import PouchPlaceholder from '../../PouchPlaceholder.astro';
+import { getLang } from '../../../i18n';
+import { pouchyContent } from '../content';
+
+const lang = getLang(Astro.currentLocale);
+const t = pouchyContent[lang].home;
+---
+
+<!-- Hero -->
+<section class="border-b border-ink/10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+    <div class="grid gap-14 md:grid-cols-2 md:items-center">
+      <div>
+        <p class="text-sm font-bold uppercase tracking-widest text-coral mb-5">
+          {t.eyebrow}
+        </p>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight text-ink">
+          {t.headline}
+        </h1>
+        <p class="mt-7 max-w-xl text-lg text-ink/70 leading-relaxed">
+          {t.lead}
+        </p>
+        <div class="mt-10 flex flex-col sm:flex-row gap-3">
+          <a
+            href="#contact"
+            class="inline-flex items-center justify-center px-8 py-3 rounded-full bg-ink text-white font-semibold hover:bg-ink-700 transition-colors"
+          >
+            {t.ctaPrimary}
+          </a>
+          <a
+            href="#product"
+            class="inline-flex items-center justify-center px-8 py-3 rounded-full border-2 border-ink text-ink font-semibold hover:bg-ink/5 transition-colors"
+          >
+            {t.ctaSecondary}
+          </a>
+        </div>
+      </div>
+
+      <PouchPlaceholder alt={t.pouchAlt} caption={t.pouchPlaceholder} />
+    </div>
+  </div>
+</section>
+
+<!-- Pillars -->
+<section class="border-b border-ink/10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-ink leading-tight">
+      {t.pillarsHeading}
+    </h2>
+    <div class="mt-12 grid gap-10 sm:grid-cols-3">
+      {t.pillars.map(({ title, body }, i) => (
+        <div>
+          <span class="inline-flex items-center justify-center h-9 w-9 rounded-full bg-[#FFD09E]/70 text-ink text-sm font-bold">
+            {i + 1}
+          </span>
+          <h3 class="mt-5 text-lg font-bold text-ink">{title}</h3>
+          <p class="mt-2.5 text-ink/70 leading-relaxed">{body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,10 +1,8 @@
 ---
 import { Image } from 'astro:assets';
-import heroScribbles from '../../assets/hero-scribbles.svg';
-import { getLang } from '../../i18n';
-
-// TODO: replace with the real contact address
-const contactEmail = 'info@pauci.sk';
+import heroScribbles from '../../../assets/hero-scribbles.svg';
+import { getLang } from '../../../i18n';
+import { contactEmail } from '../../../site';
 
 const lang = getLang(Astro.currentLocale);
 

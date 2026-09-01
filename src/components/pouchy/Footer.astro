@@ -1,0 +1,72 @@
+---
+import Logo from './Logo.astro';
+import { getLang, pouchyHref, pauciHref } from '../../i18n';
+
+const currentYear = new Date().getFullYear();
+
+const lang = getLang(Astro.currentLocale);
+
+const content = {
+  sk: {
+    navLinks: [
+      { label: 'Produkt', href: '#product' },
+      { label: 'O nás', href: '#about' },
+      { label: 'Kontakt', href: '#contact' },
+    ],
+    brandsLabel: 'Značky',
+    pauciNote: 'pre školy',
+    rights: 'Všetky práva vyhradené.',
+  },
+  en: {
+    navLinks: [
+      { label: 'Product', href: '#product' },
+      { label: 'About', href: '#about' },
+      { label: 'Contact', href: '#contact' },
+    ],
+    brandsLabel: 'Brands',
+    pauciNote: 'for Slovak schools',
+    rights: 'All rights reserved.',
+  },
+} as const;
+
+const t = content[lang];
+---
+
+<footer class="border-t border-ink/10 bg-mist">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="grid gap-10 sm:grid-cols-2">
+      <div>
+        <a href={pouchyHref(lang)} aria-label="Pouchy home">
+          <Logo />
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 gap-8 text-sm">
+        <nav class="flex flex-col gap-3">
+          {t.navLinks.map(({ label, href }) => (
+            <a
+              href={href}
+              class="text-ink/70 hover:text-ink transition-colors"
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
+
+        <div class="flex flex-col gap-3">
+          <span class="font-medium text-ink">{t.brandsLabel}</span>
+          <a
+            href={pauciHref(lang)}
+            class="text-ink/70 hover:text-ink transition-colors"
+          >
+            Pauči <span class="text-ink/70/70">— {t.pauciNote}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 border-t border-ink/10 pt-6 text-xs text-ink/70">
+      &copy; {currentYear} Pouchy. {t.rights}
+    </div>
+  </div>
+</footer>

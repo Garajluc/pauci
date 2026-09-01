@@ -1,0 +1,164 @@
+---
+import { getLang } from '../../../i18n';
+import { pouchyContent } from '../content';
+import { contactEmail } from '../../../site';
+
+const lang = getLang(Astro.currentLocale);
+const t = pouchyContent[lang].contact;
+
+const labels = {
+  sk: {
+    name: 'Meno a priezvisko',
+    namePlaceholder: 'Jana Nováková',
+    org: 'Organizácia',
+    orgPlaceholder: 'Základná škola Hlavná 1',
+    email: 'E-mail',
+    emailPlaceholder: 'jana@priklad.sk',
+    message: 'Správa',
+    messagePlaceholder: 'Napíšte nám pár slov o tom, kde chcete puzdrá používať.',
+    submit: 'Odoslať',
+    note: 'Odoslaním sa otvorí váš e-mailový klient so správou pripravenou na adresu',
+    subjectPrefix: 'Dopyt Pouchy',
+  },
+  en: {
+    name: 'Full name',
+    namePlaceholder: 'Jane Smith',
+    org: 'Organisation',
+    orgPlaceholder: 'Hillside Primary School',
+    email: 'Email',
+    emailPlaceholder: 'jane@example.com',
+    message: 'Message',
+    messagePlaceholder: 'Tell us a bit about where you would like to use the pouches.',
+    submit: 'Send',
+    note: 'Submitting opens your email client with a message ready to send to',
+    subjectPrefix: 'Pouchy enquiry',
+  },
+} as const;
+
+const f = labels[lang];
+
+const fieldClass =
+  'w-full rounded-md border border-ink/10 px-4 py-2.5 text-sm text-ink placeholder:text-ink/40 focus:outline-none focus:ring-2 focus:ring-ink focus:border-transparent transition';
+---
+
+<section id="contact" class="border-b border-ink/10 scroll-mt-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-ink leading-tight max-w-3xl">
+      {t.title}
+    </h2>
+    <p class="mt-6 max-w-2xl text-lg text-ink/70 leading-relaxed">
+      {t.lead}
+    </p>
+    <p class="mt-6 text-ink/70">
+      {t.emailLabel}:{' '}
+      <a href={`mailto:${contactEmail}`} class="text-ink underline hover:no-underline">
+        {contactEmail}
+      </a>
+    </p>
+
+    <form
+      id="pouchy-contact-form"
+      class="mt-12 max-w-3xl space-y-6"
+      data-contact-email={contactEmail}
+      data-subject-prefix={f.subjectPrefix}
+    >
+      <div class="grid gap-6 sm:grid-cols-2">
+        <div>
+          <label for="name" class="block text-sm font-medium text-ink mb-1.5">
+            {f.name}
+          </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            required
+            class={fieldClass}
+            placeholder={f.namePlaceholder}
+          />
+        </div>
+
+        <div>
+          <label for="org" class="block text-sm font-medium text-ink mb-1.5">
+            {f.org}
+          </label>
+          <input
+            id="org"
+            name="org"
+            type="text"
+            autocomplete="organization"
+            required
+            class={fieldClass}
+            placeholder={f.orgPlaceholder}
+          />
+        </div>
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-medium text-ink mb-1.5">
+          {f.email}
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          required
+          class={fieldClass}
+          placeholder={f.emailPlaceholder}
+        />
+      </div>
+
+      <div>
+        <label for="message" class="block text-sm font-medium text-ink mb-1.5">
+          {f.message}
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          rows="6"
+          required
+          class={`${fieldClass} resize-none`}
+          placeholder={f.messagePlaceholder}
+        ></textarea>
+      </div>
+
+      <p class="text-sm text-ink/70">
+        {f.note}{' '}
+        <a href={`mailto:${contactEmail}`} class="text-ink underline hover:no-underline">
+          {contactEmail}
+        </a>.
+      </p>
+
+      <div class="flex justify-end">
+        <button
+          type="submit"
+          class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 rounded-full bg-ink text-white font-semibold hover:bg-ink-700 transition-colors focus:outline-none focus:ring-2 focus:ring-ink focus:ring-offset-2"
+        >
+          {f.submit}
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('pouchy-contact-form') as HTMLFormElement | null;
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const data = new FormData(form);
+    const name = String(data.get('name') ?? '');
+    const org = String(data.get('org') ?? '');
+    const email = String(data.get('email') ?? '');
+    const message = String(data.get('message') ?? '');
+
+    const subjectPrefix = form.dataset.subjectPrefix ?? 'Pouchy';
+    const subject = `${subjectPrefix} – ${org}`.trim();
+    const body = `${message}\n\n—\n${name}\n${org}\n${email}`;
+
+    const to = form.dataset.contactEmail ?? '';
+    window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+</script>

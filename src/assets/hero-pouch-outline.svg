@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 640" fill="none"
+     stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Only the part of the phone above the rim is visible; the rest sits inside
+       the pouch and is clipped rather than drawn through it. -->
+  <clipPath id="above-rim">
+    <rect x="0" y="0" width="320" height="182" />
+  </clipPath>
+  <g clip-path="url(#above-rim)">
+    <path d="M100 240 V72 a18 18 0 0 1 18-18 h84 a18 18 0 0 1 18 18 v168" />
+    <line x1="141" y1="76" x2="179" y2="76" stroke-width="3.5" />
+  </g>
+
+  <!-- pouch body -->
+  <path d="M36 214 a34 34 0 0 1 34-34 h180 a34 34 0 0 1 34 34 v352 a34 34 0 0 1-34 34 H70 a34 34 0 0 1-34-34 z" />
+
+  <!-- body seam, kept below the flap so the two shapes stay legible -->
+  <path d="M58 372 v186 a14 14 0 0 0 14 14 h176 a14 14 0 0 0 14-14 V372"
+        stroke-width="2.5" opacity="0.4" />
+
+  <!-- flap: fold at the rim, hanging down over the front with a rounded hem -->
+  <path d="M36 214 h248 v92 a124 124 0 0 1-248 0 z" />
+
+  <!-- stud / lock point on the flap -->
+  <circle cx="160" cy="330" r="18" />
+  <circle cx="160" cy="330" r="6.5" stroke-width="3" />
+</svg>
