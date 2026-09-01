@@ -1,0 +1,75 @@
+---
+import { getLang, pauciHref } from '../../../i18n';
+import { pouchyContent } from '../content';
+
+const lang = getLang(Astro.currentLocale);
+const t = pouchyContent[lang].product;
+---
+
+<section id="product" class="border-b border-ink/10 scroll-mt-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <p class="text-sm font-bold uppercase tracking-widest text-coral mb-5">
+      {t.title}
+    </p>
+    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-ink leading-tight">
+      {t.tagline}
+    </h2>
+    <p class="mt-6 max-w-2xl text-lg text-ink/70 leading-relaxed">
+      {t.lead}
+    </p>
+
+    <h3 class="mt-16 text-xl sm:text-2xl font-bold tracking-tight text-ink leading-tight">
+      {t.specsHeading}
+    </h3>
+    <dl class="mt-8 max-w-3xl divide-y divide-ink/10 border-t border-ink/10">
+      {t.specs.map(({ label, value }) => (
+        <div class="grid gap-1 sm:grid-cols-3 py-4">
+          <dt class="text-sm font-medium text-ink">{label}</dt>
+          <dd class="sm:col-span-2 text-ink/70">{value}</dd>
+        </div>
+      ))}
+    </dl>
+
+    <h3 class="mt-16 text-xl sm:text-2xl font-bold tracking-tight text-ink leading-tight">
+      {t.usesHeading}
+    </h3>
+    <div class="mt-8 grid gap-8 sm:grid-cols-3">
+      {t.uses.map((use) => {
+        const badge = (
+          <span
+            class={`inline-block rounded-full px-2.5 py-1 text-xs font-semibold ${
+              use.status === 'live'
+                ? 'bg-coral/15 text-coral-700'
+                : 'bg-ink/5 text-ink/70'
+            }`}
+          >
+            {use.status === 'live' ? t.statusLive : t.statusSoon}
+          </span>
+        );
+
+        // The live use case links through to the Pauči sub-brand; the rest have
+        // nowhere to go yet, so they stay as plain cards.
+        return 'linkLabel' in use ? (
+          <a
+            href={pauciHref(lang)}
+            class="group block rounded-xl border border-ink/10 p-6 hover:border-ink/25 hover:bg-mist transition-colors focus:outline-none focus:ring-2 focus:ring-ink focus:ring-offset-2"
+          >
+            {badge}
+            <h4 class="mt-3 text-lg font-bold text-ink">{use.title}</h4>
+            <p class="mt-2.5 text-ink/70 leading-relaxed">{use.body}</p>
+            <span class="mt-4 inline-flex items-center gap-2 text-sm font-medium text-ink">
+              {use.linkLabel}
+              <span class="transition-transform group-hover:translate-x-0.5" aria-hidden="true">&rarr;</span>
+            </span>
+          </a>
+        ) : (
+          <div class="rounded-xl border border-ink/10 p-6">
+            {badge}
+            <h4 class="mt-3 text-lg font-bold text-ink">{use.title}</h4>
+            <p class="mt-2.5 text-ink/70 leading-relaxed">{use.body}</p>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

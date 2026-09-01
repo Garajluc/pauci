@@ -1,0 +1,67 @@
+---
+import { Image } from 'astro:assets';
+import Logo from './Logo.astro';
+import heroScribbles from '../../assets/hero-scribbles.svg';
+import { getLang, pauciHref, pouchyHref } from '../../i18n';
+
+const currentYear = new Date().getFullYear();
+
+const lang = getLang(Astro.currentLocale);
+
+const content = {
+  sk: {
+    navLinks: [
+      { label: 'Prečo Pauči', href: pauciHref(lang, '#benefits') },
+      { label: 'Ako funguje', href: pauciHref(lang, '#how-it-works') },
+      { label: 'O produkte', href: pauciHref(lang, '#product') },
+      { label: 'FAQ', href: pauciHref(lang, '#faq') },
+      { label: 'Kontakt', href: pauciHref(lang, '#contact') },
+    ],
+    rights: 'Všetky práva vyhradené.',
+    parentBrand: 'Pauči je slovenská značka pre školy od',
+  },
+  en: {
+    navLinks: [
+      { label: 'Why Pauči', href: pauciHref(lang, '#benefits') },
+      { label: 'How it works', href: pauciHref(lang, '#how-it-works') },
+      { label: 'Product', href: pauciHref(lang, '#product') },
+      { label: 'FAQ', href: pauciHref(lang, '#faq') },
+      { label: 'Contact', href: pauciHref(lang, '#contact') },
+    ],
+    rights: 'All rights reserved.',
+    parentBrand: 'Pauči is the Slovak schools brand by',
+  },
+} as const;
+
+const t = content[lang];
+---
+
+<footer class="relative overflow-hidden bg-gray-900 text-gray-400">
+  <Image
+    src={heroScribbles}
+    alt=""
+    aria-hidden="true"
+    class="absolute top-0 inset-x-0 w-full h-auto opacity-25 pointer-events-none select-none"
+  />
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <a href={pauciHref(lang)} aria-label="Pauci home">
+        <Logo class="h-7 text-white" />
+      </a>
+
+      <nav class="flex flex-wrap justify-center gap-6 text-sm">
+        {t.navLinks.map(({ label, href }) => (
+          <a href={href} class="hover:text-white transition-colors">{label}</a>
+        ))}
+      </nav>
+    </div>
+
+    <div class="mt-10 border-t border-gray-800 pt-6 text-center text-xs">
+      <p>
+        {t.parentBrand}{' '}
+        <a href={pouchyHref(lang)} class="underline hover:text-white transition-colors">Pouchy</a>.
+      </p>
+      <p class="mt-2">&copy; {currentYear} Pouchy. {t.rights}</p>
+    </div>
+  </div>
+</footer>

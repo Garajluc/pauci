@@ -1,0 +1,39 @@
+---
+import PouchOutline from '../assets/hero-pouch-outline.svg';
+
+interface Props {
+  /** Accessible name for the drawing itself */
+  alt: string;
+  /** Caption under the frame explaining the artwork is provisional */
+  caption: string;
+  /** Classes for the outer <figure> — sizing and responsive visibility */
+  class?: string;
+  /** Tailwind bg utility for the frame interior; brands differ in ground color */
+  frameClass?: string;
+  /** Max width of the drawing inside the frame */
+  drawingClass?: string;
+}
+
+const {
+  alt,
+  caption,
+  class: className = 'mx-auto w-full max-w-[340px]',
+  frameClass = 'bg-mist/50',
+  drawingClass = 'max-w-[220px]',
+} = Astro.props;
+---
+
+<!-- The dashed border marks this as provisional artwork, to be replaced by the
+     real product photo. Shared by both brands so the two stay in step. -->
+<figure class={className}>
+  <div class={`rounded-2xl border-2 border-dashed border-ink/25 px-6 py-10 ${frameClass}`}>
+    <PouchOutline
+      class={`w-full ${drawingClass} mx-auto h-auto text-ink/80`}
+      role="img"
+      aria-label={alt}
+    />
+  </div>
+  <figcaption class="mt-3 text-center text-xs text-ink/80 leading-relaxed">
+    {caption}
+  </figcaption>
+</figure>

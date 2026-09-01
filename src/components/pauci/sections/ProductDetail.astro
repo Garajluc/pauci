@@ -1,14 +1,14 @@
 ---
-import { Image } from 'astro:assets';
-import Highlight from '../Highlight.astro';
-import heroPouch from '../../assets/hero-pouch.png';
-import { getLang } from '../../i18n';
+import Highlight from '../../Highlight.astro';
+import { getLang } from '../../../i18n';
+import PouchPlaceholder from '../../PouchPlaceholder.astro';
 
 const lang = getLang(Astro.currentLocale);
 
 const content = {
   sk: {
     imageAlt: 'Detail uzamykateľného puzdra Pauči',
+    imagePlaceholder: 'Ilustračný obrázok – finálna fotografia produktu bude doplnená',
     heading: 'Jednoduchý mechanizmus. Žiadne ostré prvky.',
     p1: 'Pri produkte, ktorý majú deti používať každý deň, je spôsob uzamykania rovnako dôležitý ako samotné puzdro.',
     p2a: 'Preto vyvíjame vlastný mechanizmus navrhnutý tak, aby bol',
@@ -31,6 +31,7 @@ const content = {
   },
   en: {
     imageAlt: 'Detail of the lockable Pauči pouch',
+    imagePlaceholder: 'Placeholder illustration – the final product photo is coming',
     heading: 'A simple mechanism. No sharp parts.',
     p1: 'For a product children use every day, the locking mechanism matters as much as the pouch itself.',
     p2a: "That's why we're developing our own mechanism, designed to be",
@@ -60,14 +61,13 @@ const t = content[lang];
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid gap-12 md:grid-cols-2 items-center">
       <!-- Product visual -->
-      <div class="relative flex items-center justify-center rounded-2xl bg-white border border-gray-100 shadow-sm p-10 sm:p-14">
-        <Image
-          src={heroPouch}
-          alt={t.imageAlt}
-          class="w-full max-w-[240px] h-auto"
-          loading="lazy"
-        />
-      </div>
+      <PouchPlaceholder
+        alt={t.imageAlt}
+        caption={t.imagePlaceholder}
+        class="mx-auto w-full max-w-[360px]"
+        frameClass="bg-white"
+        drawingClass="max-w-[240px]"
+      />
 
       <!-- Copy + callouts -->
       <div class="text-center md:text-left">

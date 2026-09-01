@@ -1,0 +1,204 @@
+---
+import Logo from './Logo.astro';
+import { getLang, pouchyHref, pauciHref } from '../../i18n';
+
+const lang = getLang(Astro.currentLocale);
+
+const content = {
+  sk: {
+    product: 'Produkt',
+    productItems: [
+      {
+        label: 'Pauči pre školy',
+        note: 'Pre základné a stredné školy',
+        href: pauciHref(lang),
+      },
+    ],
+    navLinks: [
+      { label: 'O nás', href: '#about' },
+      { label: 'Kontakt', href: '#contact' },
+    ],
+    cta: 'Spojte sa s nami',
+    menuLabel: 'Otvoriť menu',
+  },
+  en: {
+    product: 'Product',
+    productItems: [
+      {
+        label: 'Pauči for Schools',
+        note: 'For Slovak primary and secondary schools',
+        href: pauciHref(lang),
+      },
+    ],
+    navLinks: [
+      { label: 'About', href: '#about' },
+      { label: 'Contact', href: '#contact' },
+    ],
+    cta: 'Get in touch',
+    menuLabel: 'Open menu',
+  },
+} as const;
+
+const t = content[lang];
+
+const langLinks = [
+  { code: 'sk', label: 'SK', href: pouchyHref('sk') },
+  { code: 'en', label: 'EN', href: pouchyHref('en') },
+] as const;
+
+const navLinkClass =
+  'text-sm font-medium text-ink/70 hover:text-ink transition-colors';
+---
+
+<header class="sticky top-0 z-50 bg-paper/90 backdrop-blur border-b border-ink/10">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+    <a href={pouchyHref(lang)} aria-label="Pouchy home">
+      <Logo />
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8">
+      <!-- Product dropdown: opens on hover and on keyboard focus, no JS required -->
+      <div class="relative group">
+        <a
+          href="#product"
+          class={`inline-flex items-center gap-1.5 ${navLinkClass} group-hover:text-ink`}
+          aria-haspopup="true"
+        >
+          {t.product}
+          <svg
+            class="h-3.5 w-3.5 transition-transform group-hover:rotate-180 group-focus-within:rotate-180"
+            viewBox="0 0 20 20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <path d="M5 7.5 10 12.5 15 7.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+
+        <div
+          class="invisible opacity-0 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 transition-opacity absolute left-0 top-full pt-3"
+        >
+          <div class="w-72 rounded-lg border border-ink/10 bg-paper shadow-lg p-2">
+            {t.productItems.map(({ label, note, href }) => (
+              <a href={href} class="block rounded-md px-3 py-2.5 hover:bg-mist transition-colors">
+                <span class="block text-sm font-semibold text-ink">{label}</span>
+                <span class="block mt-0.5 text-xs text-ink/70">{note}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {t.navLinks.map(({ label, href }) => (
+        <a href={href} class={navLinkClass}>{label}</a>
+      ))}
+    </nav>
+
+    <div class="hidden md:flex items-center gap-5">
+      <div class="flex items-center gap-1.5 text-sm font-medium" aria-label="Language">
+        {langLinks.map(({ code, label, href }, i) => (
+          <>
+            {i > 0 && <span class="text-ink/30" aria-hidden="true">/</span>}
+            <a
+              href={href}
+              aria-current={code === lang ? 'page' : undefined}
+              class={code === lang
+                ? 'text-ink'
+                : 'text-ink/70 hover:text-ink transition-colors'}
+            >
+              {label}
+            </a>
+          </>
+        ))}
+      </div>
+
+      <a
+        href="#contact"
+        class="inline-flex items-center px-4 py-2 rounded-full bg-ink text-white text-sm font-medium hover:bg-ink-700 transition-colors"
+      >
+        {t.cta}
+      </a>
+    </div>
+
+    <!-- Mobile nav toggle (CSS-only, no JS required) -->
+    <label
+      for="mobile-menu-toggle"
+      class="md:hidden p-2 rounded-md text-ink/70 hover:text-ink cursor-pointer"
+      aria-label={t.menuLabel}
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </label>
+  </div>
+
+  <input type="checkbox" id="mobile-menu-toggle" class="sr-only peer/menu" aria-hidden="true" />
+
+  <!-- Mobile menu panel: the dropdown is flattened into a labelled group -->
+  <div id="mobile-menu-panel" class="hidden peer-checked/menu:block md:hidden border-t border-ink/10 bg-paper">
+    <nav class="flex flex-col px-4 py-4 gap-4">
+      <a href="#product" class={navLinkClass}>{t.product}</a>
+
+      {t.productItems.map(({ label, href }) => (
+        <a
+          href={href}
+          class="pl-4 border-l-2 border-ink/10 text-sm font-medium text-ink/70 hover:text-ink transition-colors"
+        >
+          {label}
+        </a>
+      ))}
+
+      {t.navLinks.map(({ label, href }) => (
+        <a href={href} class={navLinkClass}>{label}</a>
+      ))}
+
+      <div class="flex items-center gap-1.5 text-sm font-medium" aria-label="Language">
+        {langLinks.map(({ code, label, href }, i) => (
+          <>
+            {i > 0 && <span class="text-ink/30" aria-hidden="true">/</span>}
+            <a
+              href={href}
+              aria-current={code === lang ? 'page' : undefined}
+              class={code === lang
+                ? 'text-ink'
+                : 'text-ink/70 hover:text-ink transition-colors'}
+            >
+              {label}
+            </a>
+          </>
+        ))}
+      </div>
+
+      <a
+        href="#contact"
+        class="inline-flex items-center justify-center px-4 py-2 rounded-full bg-ink text-white text-sm font-medium hover:bg-ink-700 transition-colors"
+      >
+        {t.cta}
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle') as HTMLInputElement | null;
+  const panel = document.getElementById('mobile-menu-panel');
+
+  if (toggle) {
+    // Width-only check so mobile browsers' collapsing URL bar (height change) doesn't close the menu
+    let lastWidth = window.innerWidth;
+    window.addEventListener('resize', () => {
+      if (window.innerWidth !== lastWidth) {
+        lastWidth = window.innerWidth;
+        toggle.checked = false;
+      }
+    });
+
+    panel?.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        toggle.checked = false;
+      });
+    });
+  }
+</script>
