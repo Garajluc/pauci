@@ -2,10 +2,12 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
-  // Served from the domain root. If this ever moves back under a sub-path
-  // (e.g. GitHub Pages project sites), set `base` and the helpers in
-  // src/i18n.ts will pick it up from BASE_URL automatically.
-  site: 'https://pouchy.com',
+  // GitHub Pages project site: Pouchy (root brand) lives at <base>/, and the
+  // Pauči sub-brand at <base>/pauci/. The helpers in src/i18n.ts and the public
+  // asset references read BASE_URL, so both follow this automatically.
+  // Moving to a bare domain later means dropping `base` and updating `site`.
+  site: 'https://garajluc.github.io',
+  base: '/pouchy',
   i18n: {
     defaultLocale: 'sk',
     locales: ['sk', 'en'],
