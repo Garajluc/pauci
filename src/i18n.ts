@@ -9,15 +9,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const localePrefix = (lang: Lang): string => (lang === 'en' ? '/en' : '');
 
 /**
- * URL of the Pouchy (main brand) single page, base- and locale-aware.
- * `hash` is an optional in-page anchor, e.g. '#product'.
- */
-export const pouchyHref = (lang: Lang, hash = ''): string =>
-  `${base}${localePrefix(lang)}/${hash}`;
-
-/**
- * URL of a Pauči (Slovak schools sub-brand) page, base- and locale-aware.
+ * URL of the Pouchy pre školy single page, base- and locale-aware.
  * `hash` is an optional in-page anchor, e.g. '#faq'.
  */
-export const pauciHref = (lang: Lang, hash = ''): string =>
-  `${base}${localePrefix(lang)}/pauci/${hash}`;
+export const siteHref = (lang: Lang, hash = ''): string =>
+  `${base}${localePrefix(lang)}/${hash}`;

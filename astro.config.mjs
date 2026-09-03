@@ -2,10 +2,14 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
-  // GitHub Pages project site: Pouchy (root brand) lives at <base>/, and the
-  // Pauči sub-brand at <base>/pauci/. The helpers in src/i18n.ts and the public
-  // asset references read BASE_URL, so both follow this automatically.
-  // Moving to a bare domain later means dropping `base` and updating `site`.
+  // GitHub Pages project site: Pouchy pre školy lives at <base>/ (SK) and
+  // <base>/en/. The helpers in src/i18n.ts and the public asset references
+  // read BASE_URL, so they follow this automatically.
+  //
+  // Moving to the custom domain pouchy-pre-skoly.sk later:
+  //   1. site: 'https://pouchy-pre-skoly.sk', remove `base`
+  //   2. add public/CNAME containing `pouchy-pre-skoly.sk`
+  //   3. set the custom domain in the repo's Pages settings and point DNS
   site: 'https://garajluc.github.io',
   base: '/pouchy',
   i18n: {

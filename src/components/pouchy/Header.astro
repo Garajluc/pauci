@@ -1,6 +1,6 @@
 ---
 import Logo from './Logo.astro';
-import { getLang, pouchyHref, pauciHref } from '../../i18n';
+import { getLang, siteHref } from '../../i18n';
 
 const lang = getLang(Astro.currentLocale);
 
@@ -11,7 +11,7 @@ const content = {
       {
         label: 'Pauči pre školy',
         note: 'Pre základné a stredné školy',
-        href: pauciHref(lang),
+        href: siteHref(lang),
       },
     ],
     navLinks: [
@@ -27,7 +27,7 @@ const content = {
       {
         label: 'Pauči for Schools',
         note: 'For Slovak primary and secondary schools',
-        href: pauciHref(lang),
+        href: siteHref(lang),
       },
     ],
     navLinks: [
@@ -42,8 +42,8 @@ const content = {
 const t = content[lang];
 
 const langLinks = [
-  { code: 'sk', label: 'SK', href: pouchyHref('sk') },
-  { code: 'en', label: 'EN', href: pouchyHref('en') },
+  { code: 'sk', label: 'SK', href: siteHref('sk') },
+  { code: 'en', label: 'EN', href: siteHref('en') },
 ] as const;
 
 const navLinkClass =
@@ -52,7 +52,7 @@ const navLinkClass =
 
 <header class="sticky top-0 z-50 bg-paper/90 backdrop-blur border-b border-ink/10">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-    <a href={pouchyHref(lang)} aria-label="Pouchy home">
+    <a href={siteHref(lang)} aria-label="Pouchy home">
       <Logo />
     </a>
 

@@ -1,5 +1,5 @@
 ---
-import { getLang, pauciHref } from '../i18n';
+import { getLang, siteHref } from '../i18n';
 
 interface Props {
   title?: string;
@@ -10,14 +10,14 @@ const lang = getLang(Astro.currentLocale);
 
 const defaults = {
   sk: {
-    title: 'Pauči | Jednoduchá regulácia mobilov v školách',
+    title: 'Pouchy pre školy | Jednoduchá regulácia mobilov v školách',
     description:
-      'Pauči je uzamykateľné puzdro na mobil určené na jednoduchú reguláciu používania telefónov počas vyučovania.',
+      'Pouchy je uzamykateľné puzdro na mobil určené na jednoduchú reguláciu používania telefónov počas vyučovania.',
   },
   en: {
-    title: 'Pauči | Simple phone regulation in schools',
+    title: 'Pouchy for schools | Simple phone regulation in schools',
     description:
-      'Pauči is a lockable phone pouch designed for simple regulation of phone use during lessons.',
+      'Pouchy is a lockable phone pouch designed for simple regulation of phone use during lessons.',
   },
 } as const;
 
@@ -43,8 +43,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap"
     />
     <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
-    <link rel="alternate" hreflang="sk" href={new URL(pauciHref('sk'), Astro.site)} />
-    <link rel="alternate" hreflang="en" href={new URL(pauciHref('en'), Astro.site)} />
+    <link rel="alternate" hreflang="sk" href={new URL(siteHref('sk'), Astro.site)} />
+    <link rel="alternate" hreflang="en" href={new URL(siteHref('en'), Astro.site)} />
   </head>
   <body class="antialiased text-ink bg-cream overflow-x-clip">
     <slot />

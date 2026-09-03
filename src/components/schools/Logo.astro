@@ -1,0 +1,38 @@
+---
+/**
+ * Pouchy pre školy logo: the Pouchy wordmark with a small "pre školy" /
+ * "for schools" tag underneath its right end. The whole lockup inherits
+ * `currentColor`, so the footer can flip it to white.
+ */
+import PouchyWordmark from '../PouchyWordmark.astro';
+import { getLang } from '../../i18n';
+
+interface Props {
+  /** Tailwind classes for the wordmark (height and color); the tag scales with it */
+  class?: string;
+}
+
+const lang = getLang(Astro.currentLocale);
+
+const tag = {
+  sk: 'pre školy',
+  en: 'for schools',
+} as const;
+
+const name = {
+  sk: 'Pouchy pre školy',
+  en: 'Pouchy for schools',
+} as const;
+
+const { class: className = 'h-7 text-ink' } = Astro.props;
+---
+
+<span class="inline-flex flex-col items-end leading-none" role="img" aria-label={name[lang]}>
+  <PouchyWordmark class={className} label="" />
+  <span
+    aria-hidden="true"
+    class="-mt-0.5 text-[0.6rem] font-semibold tracking-[0.18em] uppercase text-current opacity-75 select-none"
+  >
+    {tag[lang]}
+  </span>
+</span>

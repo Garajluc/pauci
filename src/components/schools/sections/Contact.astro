@@ -8,7 +8,7 @@ const lang = getLang(Astro.currentLocale);
 
 const content = {
   sk: {
-    heading: 'Chcete Pauči vyskúšať vo vašej škole?',
+    heading: 'Chcete Pouchy vyskúšať vo vašej škole?',
     intro:
       'Radi vám ukážeme prototyp a porozprávame sa o tom, ako by mohol fungovať práve u vás.',
     nameLabel: 'Meno a priezvisko',
@@ -22,10 +22,10 @@ const content = {
       'Napíšte nám pár slov o vašej škole alebo o tom, ako aktuálne riešite mobily počas vyučovania.',
     submit: 'Odoslať',
     note: 'Odoslaním sa otvorí váš e-mailový klient so správou pripravenou na adresu',
-    subjectPrefix: 'Záujem o pilot Pauči',
+    subjectPrefix: 'Záujem o pilot Pouchy pre školy',
   },
   en: {
-    heading: 'Want to try Pauči at your school?',
+    heading: 'Want to try Pouchy at your school?',
     intro:
       "We'd be happy to show you the prototype and talk about how it could work at your school.",
     nameLabel: 'Full name',
@@ -39,7 +39,7 @@ const content = {
       'Tell us a bit about your school or how you currently handle phones during lessons.',
     submit: 'Send',
     note: 'Submitting opens your email client with a message prepared for',
-    subjectPrefix: 'Pauči pilot interest',
+    subjectPrefix: 'Pouchy for schools pilot interest',
   },
 } as const;
 
@@ -163,7 +163,7 @@ const t = content[lang];
     const email = String(data.get('email') ?? '');
     const message = String(data.get('message') ?? '');
 
-    const subjectPrefix = form.dataset.subjectPrefix ?? 'Pauči';
+    const subjectPrefix = form.dataset.subjectPrefix ?? 'Pouchy pre školy';
     const subject = `${subjectPrefix} – ${school}`.trim();
     const body = `${message}\n\n—\n${name}\n${school}\n${email}`;
 
