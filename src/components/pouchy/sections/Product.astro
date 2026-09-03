@@ -1,5 +1,5 @@
 ---
-import { getLang, pauciHref } from '../../../i18n';
+import { getLang, siteHref } from '../../../i18n';
 import { pouchyContent } from '../content';
 
 const lang = getLang(Astro.currentLocale);
@@ -51,7 +51,7 @@ const t = pouchyContent[lang].product;
         // nowhere to go yet, so they stay as plain cards.
         return 'linkLabel' in use ? (
           <a
-            href={pauciHref(lang)}
+            href={siteHref(lang)}
             class="group block rounded-xl border border-ink/10 p-6 hover:border-ink/25 hover:bg-mist transition-colors focus:outline-none focus:ring-2 focus:ring-ink focus:ring-offset-2"
           >
             {badge}

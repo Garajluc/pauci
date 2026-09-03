@@ -1,20 +1,34 @@
 ---
-import PouchyLayout from '../layouts/PouchyLayout.astro';
-import Header from '../components/pouchy/Header.astro';
-import Footer from '../components/pouchy/Footer.astro';
-import Home from '../components/pouchy/sections/Home.astro';
-import Product from '../components/pouchy/sections/Product.astro';
-import About from '../components/pouchy/sections/About.astro';
-import Contact from '../components/pouchy/sections/Contact.astro';
+import SchoolsLayout from '../layouts/SchoolsLayout.astro';
+import Header from '../components/schools/Header.astro';
+import Footer from '../components/schools/Footer.astro';
+import Hero from '../components/schools/sections/Hero.astro';
+import WhyNow from '../components/schools/sections/WhyNow.astro';
+import Quote from '../components/schools/sections/Quote.astro';
+import Solutions from '../components/schools/sections/Solutions.astro';
+import HowItWorks from '../components/schools/sections/HowItWorks.astro';
+import Benefits from '../components/schools/sections/Benefits.astro';
+import ProductDetail from '../components/schools/sections/ProductDetail.astro';
+import SchoolDay from '../components/schools/sections/SchoolDay.astro';
+import WhereWeAre from '../components/schools/sections/WhereWeAre.astro';
+import Faq from '../components/schools/sections/Faq.astro';
+import Contact from '../components/schools/sections/Contact.astro';
 ---
 
-<PouchyLayout>
+<SchoolsLayout>
   <Header />
   <main>
-    <Home />
-    <Product />
-    <About />
+    <Hero />
+    <WhyNow />
+    <Quote />
+    <Solutions />
+    <HowItWorks />
+    <Benefits />
+    <ProductDetail />
+    <SchoolDay />
+    <WhereWeAre />
+    <Faq />
     <Contact />
   </main>
   <Footer />
-</PouchyLayout>
+</SchoolsLayout>

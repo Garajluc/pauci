@@ -1,66 +1,49 @@
 ---
 import Logo from './Logo.astro';
-import { getLang, pauciHref, pouchyHref } from '../../i18n';
+import { getLang, siteHref } from '../../i18n';
 
 const lang = getLang(Astro.currentLocale);
 
 const content = {
   sk: {
     navLinks: [
-      { label: 'Prečo Pauči', href: pauciHref(lang, '#benefits') },
-      { label: 'Ako funguje', href: pauciHref(lang, '#how-it-works') },
-      { label: 'O produkte', href: pauciHref(lang, '#product') },
-      { label: 'FAQ', href: pauciHref(lang, '#faq') },
-      { label: 'Kontakt', href: pauciHref(lang, '#contact') },
+      { label: 'Prečo Pouchy', href: siteHref(lang, '#benefits') },
+      { label: 'Ako funguje', href: siteHref(lang, '#how-it-works') },
+      { label: 'O produkte', href: siteHref(lang, '#product') },
+      { label: 'FAQ', href: siteHref(lang, '#faq') },
+      { label: 'Kontakt', href: siteHref(lang, '#contact') },
     ],
     cta: 'Pilot pre školu',
     menuLabel: 'Otvoriť menu',
+    homeLabel: 'Pouchy pre školy – domov',
   },
   en: {
     navLinks: [
-      { label: 'Why Pauči', href: pauciHref(lang, '#benefits') },
-      { label: 'How it works', href: pauciHref(lang, '#how-it-works') },
-      { label: 'Product', href: pauciHref(lang, '#product') },
-      { label: 'FAQ', href: pauciHref(lang, '#faq') },
-      { label: 'Contact', href: pauciHref(lang, '#contact') },
+      { label: 'Why Pouchy', href: siteHref(lang, '#benefits') },
+      { label: 'How it works', href: siteHref(lang, '#how-it-works') },
+      { label: 'Product', href: siteHref(lang, '#product') },
+      { label: 'FAQ', href: siteHref(lang, '#faq') },
+      { label: 'Contact', href: siteHref(lang, '#contact') },
     ],
     cta: 'School pilot',
     menuLabel: 'Toggle menu',
+    homeLabel: 'Pouchy for schools – home',
   },
 } as const;
 
 const t = content[lang];
 
 const langLinks = [
-  { code: 'sk', label: 'SK', href: pauciHref('sk') },
-  { code: 'en', label: 'EN', href: pauciHref('en') },
+  { code: 'sk', label: 'SK', href: siteHref('sk') },
+  { code: 'en', label: 'EN', href: siteHref('en') },
 ] as const;
-
-/** Sub-brand attribution shown next to the logo, e.g. "od Pouchy". */
-const byPouchy = {
-  sk: 'od',
-  en: 'by',
-} as const;
 ---
 
 <header class="sticky top-0 z-50 bg-cream/90 backdrop-blur">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-    <div class="flex items-center gap-2.5">
-      <a href={pauciHref(lang)} aria-label="Pauci home">
-        <Logo />
-      </a>
-      <!-- Sub-brand attribution: states the brand hierarchy rather than
-           implying browser history the way a back arrow does. -->
-      <span class="hidden sm:block text-xs text-ink/60 whitespace-nowrap pt-0.5">
-        {byPouchy[lang]}{' '}
-        <a
-          href={pouchyHref(lang)}
-          class="font-semibold text-ink/70 hover:text-ink underline decoration-ink/20 underline-offset-2 hover:decoration-ink transition-colors"
-        >
-          Pouchy
-        </a>
-      </span>
-    </div>
+    <a href={siteHref(lang)} aria-label={t.homeLabel} class="flex items-center">
+      <Logo />
+    </a>
 
     <nav class="hidden md:flex items-center gap-8">
       {t.navLinks.map(({ label, href }) => (
@@ -90,7 +73,7 @@ const byPouchy = {
       </div>
 
       <a
-        href={pauciHref(lang, "#contact")}
+        href={siteHref(lang, "#contact")}
         class="inline-flex items-center px-4 py-2 rounded-full bg-coral text-white text-sm font-medium hover:bg-coral-700 transition-colors"
       >
         {t.cta}
@@ -139,17 +122,10 @@ const byPouchy = {
       </div>
 
       <a
-        href={pauciHref(lang, "#contact")}
+        href={siteHref(lang, "#contact")}
         class="inline-flex items-center justify-center px-4 py-2 rounded-full bg-coral text-white text-sm font-medium hover:bg-coral-700 transition-colors"
       >
         {t.cta}
-      </a>
-
-      <a
-        href={pouchyHref(lang)}
-        class="border-t border-ink/10 pt-4 text-sm text-ink/70 hover:text-ink transition-colors"
-      >
-        {byPouchy[lang]} <span class="font-semibold">Pouchy</span>
       </a>
     </nav>
   </div>
