@@ -5,9 +5,9 @@ lockable phone pouch for Slovak schools. Built with [Astro](https://astro.build)
 TypeScript, and [Tailwind CSS](https://tailwindcss.com). Slovak is served at `/`,
 English at `/en/`.
 
-Target domain: `pouchy-pre-skoly.sk`. Until DNS is set up the site is deployed to
-GitHub Pages under the `/pouchy` base path; see the comment in `astro.config.mjs`
-for the three-step switch to the custom domain.
+Live at <https://pouchy-pre-skoly.sk>, hosted on GitHub Pages. DNS is managed at
+Websupport (A/AAAA records to GitHub Pages, `www` CNAME to `garajluc.github.io`);
+the custom domain is set in the repo's GitHub Pages settings.
 
 ## Tech stack
 
@@ -66,7 +66,7 @@ npm install
 npm run dev
 ```
 
-The site will be available at <http://localhost:4321/pouchy/>.
+The site will be available at <http://localhost:4321>.
 
 ### Build for production
 
